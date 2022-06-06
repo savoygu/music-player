@@ -4,9 +4,14 @@
   "description": "A Music Player",
   "private": true,
   "scripts": {
-    "start": "npm run deploy --prefix server/midway"
+    "start": "npm start --prefix server/midway",
+    "heroku-prebuild": "npm install --prefix server/midway",
+    "heroku-postbuild": "npm run build --prefix server/midway"
   },
   "keywords": [],
   "author": "savoygu",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@midwayjs/cli": "^1.2.90"
+  }
 }
