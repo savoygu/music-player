@@ -1,0 +1,42 @@
+.icon {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background: url("/src/assets/icons.png") no-repeat;
+  background-size: 32px auto;
+}
+
+.icon-prev {
+  background-position: 0 0;
+}
+
+.icon-next {
+  background-position: 0 -32px;
+}
+
+.icon-pause {
+  background-position: 0 -64px;
+}
+
+.icon-play {
+  background-position: 0 -96px;
+}
+
+.icon-sequence {
+  background-position: 0 -160px;
+}
+
+.icon-loop {
+  background-position: 0 -128px;
+}
+
+.icon-random {
+  background-position: 0 -192px;
+}
+
+.icon-volume {
+  width: 16px;
+  height: 16px;
+  background-position: 0 -112px;
+  background-size: 16px auto;
+}
