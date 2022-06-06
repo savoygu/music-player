@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
+    "build:gh-pages": "npm run build -- --mode gh-pages",
     "preview": "vite preview"
   },
   "dependencies": {

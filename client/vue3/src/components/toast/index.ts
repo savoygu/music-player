@@ -7,11 +7,11 @@ interface ToastProps {
   appendTo?: HTMLElement
 }
 
-let timer: NodeJS.Timeout | number | undefined
+let timer: ReturnType<typeof setTimeout> | undefined
 let toastInstance: App
 let mountNode: HTMLElement
 
-export default function createToast({
+export default function createToast ({
   text,
   duration = 2000,
   appendTo = document.body
@@ -35,12 +35,8 @@ export default function createToast({
     timer = undefined
   }, duration)
 
-  function clear() {
+  function clear () {
     toastInstance.unmount()
     appendTo.removeChild(mountNode)
   }
 }
-
-
-
-

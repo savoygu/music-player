@@ -27,7 +27,7 @@ const currentIndex = computed(() => musicList.value.findIndex(item => item.title
         alt="Logo"
         width="36"
       >
-      <h1 class="text-xl ml-5">
+      <h1 class="text-xl ml-4">
         Music Player
       </h1>
     </router-link>

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { MusicItem, Storage } from '@/types'
-import { STORAGE } from '@/constant'
+import { BASE_URL, STORAGE } from '@/constant'
 import musicList from './musiclist.json'
 
 interface MusicState {
@@ -30,7 +30,7 @@ export const useMusicStore = defineStore('musiclist', {
     },
 
     async fetchMusics () {
-      const res = await fetch('http://127.0.0.1:7001/api/qiniu/get_musics?filename=default.json')
+      const res = await fetch(BASE_URL + '/qiniu/get_musics?filename=default.json')
         .then(response => response.json())
       if (res.success) {
         this.onlineMusics = res.data
