@@ -1,0 +1,12 @@
+{
+  "name": "music-player",
+  "version": "0.0.0",
+  "description": "A Music Player",
+  "private": true,
+  "scripts": {
+    "start": "npm run deploy --prefix server/midway"
+  },
+  "keywords": [],
+  "author": "savoygu",
+  "license": "ISC"
+}
