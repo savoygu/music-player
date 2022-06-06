@@ -19,14 +19,19 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+          run_install: true
       - name: Configure committer
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
       - name: Build
         run: |
+          pnpm install
           cd ${{secrets.CLIENT}}
-          npm install
           VITE_APP_BASE_URL=${{secrets.BASE_URL}} npm run build:gh-pages
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.3.3
