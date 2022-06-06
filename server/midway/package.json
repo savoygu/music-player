@@ -40,8 +40,9 @@
     "lint": "mwts check",
     "lint:fix": "mwts fix",
     "ci": "npm run cov",
-    "build": "midway-bin build -c",
-    "deploy": "npm install && npm run build && npm run start"
+    "prebuild": "npm install",
+    "build": "npx midway-bin build -c",
+    "deploy": "npm run build && npm run start"
   },
   "midway-bin-clean": [
     ".vscode/.tsbuildinfo",
