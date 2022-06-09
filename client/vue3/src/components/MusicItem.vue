@@ -41,54 +41,66 @@ const removeFromLocal = () => {
 </script>
 
 <template>
-  <li
+  <div
     class="music-item"
     :class="{ 'is-active': isActive }"
   >
-    <div class="flex items-center">
+    <div class="music-inner">
       <img
         v-lazy="musicItem.cover"
         class="w-10 h-10"
         :alt="musicItem.title"
       >
-      <span class="ml-2.5 text-sm text-gray-800">{{ musicItem.title }}</span>
-      <span class="text-xs text-gray-500">
+      <span class="music-title ml-2.5 text-sm text-gray-800">{{ musicItem.title }}</span>
+      <span class="music-artist mr-auto text-xs text-gray-500">
         <i class="mx-1.5">-</i>{{ musicItem.artist }}
       </span>
+      <FolderDownload
+        v-if="STORAGE.ONLINE === currentTab && !inLocal"
+        class="p-2"
+        theme="outline"
+        size="16"
+        fill="#333"
+        @click.stop="addToLocal"
+      />
+      <Delete
+        v-if="STORAGE.LOCALE === currentTab"
+        class="p-2"
+        theme="outline"
+        size="16"
+        fill="#333"
+        @click.stop="removeFromLocal"
+      />
     </div>
-    <FolderDownload
-      v-if="STORAGE.ONLINE === currentTab && !inLocal"
-      class="p-2"
-      theme="outline"
-      size="16"
-      fill="#333"
-      @click.stop="addToLocal"
-    />
-    <Delete
-      v-if="STORAGE.LOCALE === currentTab"
-      class="p-2"
-      theme="outline"
-      size="16"
-      fill="#333"
-      @click.stop="removeFromLocal"
-    />
-  </li>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .music-item {
-  @apply flex justify-between items-center h-16 p-2.5 mb-2.5 rounded bg-white shadow-md cursor-pointer;
+  @apply h-16 mb-2.5 cursor-pointer ;
+
+  .music-inner {
+    @apply flex items-center h-full p-3 bg-white rounded shadow-md;
+
+    & ::v-deep(.i-icon) {
+      path {
+        stroke: var(--theme-default);
+      }
+    }
+  }
 
   &.is-active {
-    background-color: var(--theme-default);
+    .music-inner {
+      background-color: var(--theme-default);
 
-    span {
-      @apply text-gray-50;
-    }
+      span {
+        @apply text-gray-50;
+      }
 
-    & > ::v-deep(.i-icon) {
-      path {
-        stroke: #f9fafb;
+      & ::v-deep(.i-icon) {
+        path {
+          stroke: #f9fafb;
+        }
       }
     }
   }

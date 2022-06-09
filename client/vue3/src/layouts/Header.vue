@@ -40,7 +40,7 @@ const currentIndex = computed(() => musicList.value.findIndex(item => item.title
 
 <style lang="scss" scoped>
 .header {
-  @apply flex items-center px-3 sm:px-6 py-3.5 bg-white shadow-sm fixed w-full top-0;
+  @apply flex items-center px-3 sm:px-6 py-3.5 bg-white shadow-sm fixed w-full top-0 z-50;
 
   span {
     color: var(--theme-default);

@@ -20,7 +20,7 @@ defineProps<{
 
 <style lang="scss" scoped>
 @include b(mt-toast) {
-  position: absolute;
+  position: fixed;
   z-index: 11000;
   top: 50%;
   left: 50%;

@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
-import { MusicItem, Storage } from '@/types'
-import { BASE_URL, STORAGE } from '@/constant'
+import { MusicItem, Storage, Mode } from '@/types'
+import { BASE_URL, MODE, STORAGE } from '@/constant'
 import musicList from './musiclist.json'
 
 interface MusicState {
   currentTab: Storage,
+  currentMode: Mode,
   onlineMusics: MusicItem[],
   localMusics: MusicItem[]
 }
@@ -12,6 +13,7 @@ interface MusicState {
 export const useMusicStore = defineStore('musiclist', {
   state: (): MusicState => ({
     currentTab: STORAGE.LOCALE,
+    currentMode: MODE.LIST,
     onlineMusics: [],
     localMusics: musicList
   }),
@@ -27,6 +29,9 @@ export const useMusicStore = defineStore('musiclist', {
   actions: {
     setCurrentTab (currentTab: Storage) {
       this.currentTab = currentTab
+    },
+    setCurrentMode (currentMode: Mode) {
+      this.currentMode = currentMode
     },
 
     async fetchMusics () {

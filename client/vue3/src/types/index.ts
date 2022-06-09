@@ -1,4 +1,4 @@
-import { PLAY_MODE, STORAGE } from '@/constant'
+import { PLAY_MODE, STORAGE, MODE } from '@/constant'
 
 export interface MusicItem {
   title: string
@@ -10,3 +10,5 @@ export interface MusicItem {
 
 export type PlayMode = typeof PLAY_MODE[keyof typeof PLAY_MODE]
 export type Storage = typeof STORAGE[keyof typeof STORAGE]
+
+export type Mode = typeof MODE[keyof typeof MODE]
