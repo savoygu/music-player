@@ -42,6 +42,7 @@ importers:
       vue: ^3.2.25
       vue-router: '4'
       vue-tsc: ^0.34.7
+      vue3-lazy: 1.0.0-alpha.1
     dependencies:
       '@icon-park/vue-next': 1.4.0_vue@3.2.36
       '@vueuse/core': 8.6.0_vue@3.2.36
@@ -50,6 +51,7 @@ importers:
       qiniu-js: 3.4.0
       vue: 3.2.36
       vue-router: 4.0.15_vue@3.2.36
+      vue3-lazy: 1.0.0-alpha.1_vue@3.2.36
     devDependencies:
       '@types/node': 17.0.40
       '@typescript-eslint/eslint-plugin': 5.27.0_kor2e3kwnnzugzo3aovmfcq2la
@@ -8715,6 +8717,15 @@ packages:
       '@vue/runtime-dom': 3.2.36
       '@vue/server-renderer': 3.2.36_vue@3.2.36
       '@vue/shared': 3.2.36
+    dev: false
+
+  /vue3-lazy/1.0.0-alpha.1_vue@3.2.36:
+    resolution: {integrity: sha512-dpjpKK4DC5q+wZVtS/VY3X6pYBJHxRmYanr20s39RB6o6fvbneQ/DNuz37bipYfEdrEvbSZ95Y2SCexuznQNrQ==}
+    engines: {node: '>=6.0.0'}
+    peerDependencies:
+      vue: ^3.0.0-alpha.9
+    dependencies:
+      vue: 3.2.36
     dev: false
 
   /w3c-hr-time/1.0.2:

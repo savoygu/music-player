@@ -47,8 +47,8 @@ const removeFromLocal = () => {
   >
     <div class="flex items-center">
       <img
+        v-lazy="musicItem.cover"
         class="w-10 h-10"
-        :src="musicItem.cover"
         :alt="musicItem.title"
       >
       <span class="ml-2.5 text-sm text-gray-800">{{ musicItem.title }}</span>
