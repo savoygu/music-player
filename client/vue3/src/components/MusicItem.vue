@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { computed, toRefs } from 'vue'
+import { FolderDownload, Delete } from '@icon-park/vue-next'
 import { useMusicStore } from '@/store/musiclist'
 import { usePlayerStore } from '@/store/player'
 import { MusicItem, Storage } from '@/types'
-import { computed, toRefs } from 'vue'
-import { FolderDownload, Delete } from '@icon-park/vue-next'
 import { STORAGE } from '@/constant'
 import createToast from './toast'
 
@@ -11,22 +11,24 @@ const props = defineProps<{
   musicItem: MusicItem
   currentTab: Storage
 }>()
-
-const playerStore = usePlayerStore()
-const musicStore = useMusicStore()
 const { musicItem, currentTab } = toRefs(props)
 
+// store
+const playerStore = usePlayerStore()
+const musicStore = useMusicStore()
 const currentSong = computed(() => playerStore.currentSong)
+const localMusics = computed(() => musicStore.localMusics)
+
+// computed
 const isActive = computed(() => {
   return musicItem.value.title === currentSong.value?.title &&
   musicItem.value.artist === currentSong.value?.artist
 })
-const localMusics = computed(() => musicStore.localMusics)
-
 const inLocal = computed(() => {
   return !!localMusics.value.find(item => item.title === musicItem.value.title && item.artist === musicItem.value.artist)
 })
 
+// methods
 const addToLocal = () => {
   musicStore.addToLocal(musicItem.value)
   createToast({ text: '已添加到本地' })

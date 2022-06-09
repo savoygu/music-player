@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import Header from './layouts/Header.vue'
 import Audio from './components/Audio.vue'
-import { ref } from 'vue'
 
-const audioRef = ref<null | InstanceType<typeof Audio>>(null)
+const audioRef = ref<InstanceType<typeof Audio> | null>(null)
 
 const prev = () => {
   audioRef.value?.prev()

@@ -19,10 +19,12 @@ const emit = defineEmits<{
 
 const progressBarWidth = 16
 
+// reactive
 const offset = ref(0)
 const barRef = ref<HTMLDivElement | null>(null)
 const progressRef = ref<HTMLDivElement | null>(null)
 
+// computed
 const progressStyle = computed(() => {
   return {
     width: `${offset.value}px`,
@@ -35,11 +37,19 @@ const btnStyle = computed(() => {
   }
 })
 
+// watch
 watch(() => props.progress, (newProgress) => {
   const barWidth = barRef.value?.clientWidth! - (props.hasBtn ? progressBarWidth : 0)
   offset.value = barWidth * newProgress
 })
 
+// lifecycle
+onMounted(() => {
+  const barWidth = barRef.value?.clientWidth! - (props.hasBtn ? progressBarWidth : 0)
+  offset.value = barWidth * props.progress
+})
+
+// methods：drag & drop
 const touch = {
   x1: 0,
   beginWidth: 0
@@ -79,13 +89,9 @@ const onClick = (e: MouseEvent) => {
   emit('progress-changed', progress)
 }
 
+// events
 useEventListener(document, 'mouseup', onTouchEnd)
 useEventListener(document, 'touchend', onTouchEnd)
-
-onMounted(() => {
-  const barWidth = barRef.value?.clientWidth! - (props.hasBtn ? progressBarWidth : 0)
-  offset.value = barWidth * props.progress
-})
 
 </script>
 
@@ -123,40 +129,26 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .progress-bar {
-  height: 30px;
-  cursor: pointer;
+  @apply h-[30px] cursor-pointer;
 
   .bar-inner {
-    position: relative;
-    top: 13px;
-    height: 4px;
-    background-color: #ddd;
+    @apply relative top-[13px] h-1 bg-[#ddd];
   }
 
   .progress {
-    position: absolute;
-    height: 100%;
+    @apply absolute h-full;
+
     background-color: var(--theme-default);
   }
 }
 
 .progress-btn-wrapper {
-  position: absolute;
-  top: -13px;
-  left: -7px;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
+  @apply absolute -top-[13px] -left-[7px] w-[30px] h-[30px] cursor-pointer;
 
   .progress-btn {
-    position: relative;
-    top: 7px;
-    left: 7px;
-    width: 16px;
-    height: 16px;
-    border: 3px solid #ddd;
+    @apply relative top-[7px] left-[7px] w-4 h-4 border-[3px] border-[#ddd] rounded-full;
+
     background-color: var(--theme-default);
-    border-radius: 50%;
   }
 }
 </style>

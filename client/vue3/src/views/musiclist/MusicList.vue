@@ -1,27 +1,26 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import MusicItem from '@/components/MusicItem.vue'
-import { STORAGE } from '@/constant'
 import { useMusicStore } from '@/store/musiclist'
 import { usePlayerStore } from '@/store/player'
-import { MusicItem as IMusicItem } from '@/types'
-import { computed, ref } from 'vue'
+import { STORAGE } from '@/constant'
+import { MusicItem as IMusicItem, Storage } from '@/types'
 
 // store
 const playerStore = usePlayerStore()
 const musicStore = useMusicStore()
-
-// computed
 const currentTab = computed(() => musicStore.currentTab)
 const onlineMusics = computed(() => musicStore.onlineMusics)
 const localMusics = computed(() => musicStore.localMusics)
+
+// computed
 const tabRef = ref(currentTab.value)
 const musicList = computed(() =>
-  tabRef.value === STORAGE.ONLINE
-    ? onlineMusics.value
-    : localMusics.value
+  tabRef.value === STORAGE.ONLINE ? onlineMusics.value : localMusics.value
 )
 
-const switchTab = (tab: 0 | 1) => {
+// methods
+const switchTab = (tab: Storage) => {
   tabRef.value = tab
 }
 const selectItem = (song: IMusicItem, index: number) => {

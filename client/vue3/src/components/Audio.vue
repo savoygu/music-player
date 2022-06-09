@@ -31,6 +31,7 @@ onMounted(() => {
 // watch
 watch(currentSong, (newSong, oldSong) => {
   if (!newSong.url) return
+  // newSong(来自playList[currentIndex]) 和 oldSong(来自本地存储) 引用不同但数据一致
   if (equals(newSong, oldSong)) return
 
   isReady.value = false
