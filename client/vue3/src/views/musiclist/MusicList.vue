@@ -113,6 +113,13 @@ function fetchMusics () {
 
 .music-mode {
   @apply inline-flex cursor-pointer;
+
+  & ::v-deep(.i-icon) {
+    path,
+    rect {
+      stroke: var(--theme-default);
+    }
+  }
 }
 
 .music-list {

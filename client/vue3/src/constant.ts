@@ -14,6 +14,11 @@ export const BASE_URL = import.meta.env.VITE_APP_BASE_URL
 
 // 音乐展示模式
 export const MODE = <const>{
-  LIST: 'LIST',
-  CARD: 'CARD'
+  LIST: 'list',
+  CARD: 'card'
+}
+
+export const THEME = <const>{
+  GREEN: 'green',
+  ORANGE: 'orange'
 }

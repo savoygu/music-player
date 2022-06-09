@@ -23,7 +23,7 @@ const changeVolume = (volume: number) => {
 
 <template>
   <Header />
-  <div class="relative w-full min-h-full px-4 pt-16 pb-10 sm:w-[800px] sm:m-auto">
+  <div class="relative w-full min-h-full px-4 pt-[60px] pb-10 sm:w-[800px] sm:m-auto">
     <router-view
       @player:prev="prev"
       @player:next="next"

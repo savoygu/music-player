@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import { STORAGE } from '@/constant'
+import { computed, ref, watch } from 'vue'
+import { STORAGE, THEME } from '@/constant'
+import { useStore } from '@/store'
 import { useMusicStore } from '@/store/musiclist'
 import { usePlayerStore } from '@/store/player'
-import { computed } from 'vue'
+import Switch from '@/components/Switch.vue'
+import { setTheme } from '@/themes'
 
+const store = useStore()
 const musicStore = useMusicStore()
 const playerStore = usePlayerStore()
 const currentTab = computed(() => musicStore.currentTab)
@@ -13,6 +17,15 @@ const musicList = computed(() => currentTab.value === STORAGE.ONLINE
 )
 const currentSong = computed(() => playerStore.currentSong)
 const currentIndex = computed(() => musicList.value.findIndex(item => item.title === currentSong.value.title && item.artist === currentSong.value.artist))
+
+const themeRef = ref(store.theme === THEME.GREEN)
+watch(themeRef, (newTheme) => {
+  const newThemeVal = newTheme ? THEME.GREEN : THEME.ORANGE
+  setTheme(newThemeVal)
+  store.setTheme(newThemeVal)
+}, {
+  immediate: true
+})
 
 </script>
 
@@ -25,16 +38,25 @@ const currentIndex = computed(() => musicList.value.findIndex(item => item.title
       <img
         src="/src/assets/logo.png"
         alt="Logo"
-        width="36"
+        width="32"
       >
-      <h1 class="text-xl ml-4">
+      <h1 class="text-lg ml-2">
         Music Player
       </h1>
     </router-link>
     <span
       v-if="currentSong"
-      class="ml-auto text-sm"
-    >{{ STORAGE.ONLINE === currentTab ? '在线' : '本地' }}模式 [ {{ currentIndex + 1 }} / {{ musicList.length }} ]</span>
+      class="ml-auto mr-1 text-sm"
+    >{{ STORAGE.ONLINE === currentTab ? '在线' : '本地' }}模式[{{ currentIndex + 1 }} / {{ musicList.length }}]</span>
+    <Switch
+      v-model="themeRef"
+      on-lever-bg-color="#2f9842"
+      on-text-color="#2f9842"
+      on-text="绿"
+      off-lever-bg-color="#ea6248"
+      off-text-color="#ea6248"
+      off-text="橙"
+    />
   </div>
 </template>
 
