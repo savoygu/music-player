@@ -8,6 +8,12 @@
 @tailwind utilities;
 /* stylelint-enable scss/at-rule-no-unknown */
 
+html,
+body,
+#app {
+  height: 100%;
+}
+
 body {
   background-color: #f0f0f0;
 }

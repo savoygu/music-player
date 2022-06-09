@@ -44,7 +44,7 @@ function fetchMusics () {
 </script>
 
 <template>
-  <div class="musiclist mt-8">
+  <div class="musiclist my-8">
     <div class="music-header mb-5">
       <div class="music-tabs">
         <span
