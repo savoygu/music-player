@@ -4,6 +4,9 @@
   "description": "A Music Player",
   "private": true,
   "scripts": {
+    "dev:client": "pnpm --filter vue3 dev",
+    "dev:server": "pnpm --filter midway dev",
+    "dev": "npm-run-all -p dev:*",
     "start": "npm start --prefix server/midway",
     "heroku-prebuild": "npm install --prefix server/midway",
     "heroku-postbuild": "npm run build --prefix server/midway"
@@ -12,6 +15,7 @@
   "author": "savoygu",
   "license": "ISC",
   "devDependencies": {
-    "@midwayjs/cli": "^1.2.90"
+    "@midwayjs/cli": "^1.2.90",
+    "npm-run-all": "^4.1.5"
   }
 }
