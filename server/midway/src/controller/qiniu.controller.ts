@@ -1,3 +1,4 @@
+import { basename, extname } from 'path';
 import { HttpStatus, MidwayHttpError } from '@midwayjs/core';
 import {
   Body,
@@ -10,6 +11,7 @@ import {
 } from '@midwayjs/decorator';
 import { Context } from '@midwayjs/koa';
 import { Validate } from '@midwayjs/validate';
+import * as dayjs from 'dayjs';
 import { MusicDTO } from '../dto/music';
 import { QiniuService } from '../service/qiniu.service';
 
@@ -61,8 +63,12 @@ export class QiniuController {
         this.qiniuService.uploadLink(coverKey, music.cover),
       ]);
 
-    // 删除 filename
-    await this.qiniuService.deleteFile(filename);
+    // 备份
+    const ext = extname(filename);
+    const newFilename = `${basename(filename, ext)}-${dayjs().format(
+      'YYYYMMDDHH'
+    )}${ext}`;
+    await this.qiniuService.moveFile(filename, `backup/${newFilename}`);
 
     // 上传 filename
     await this.qiniuService.uploadBytes(
@@ -74,8 +80,8 @@ export class QiniuController {
           cover: coverUrl,
         })
       )
-    );
-    await this.qiniuService.refreshUrls([filename]);
+    ),
+      await this.qiniuService.refreshUrls([filename]);
     return '上传成功';
   }
 }

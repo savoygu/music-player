@@ -97,6 +97,7 @@ importers:
       '@types/koa': ^2.13.4
       '@types/node': '14'
       cross-env: ^6.0.0
+      dayjs: ^1.11.3
       dotenv: ^16.0.1
       jest: ^26.4.0
       mwts: ^1.0.5
@@ -114,6 +115,7 @@ importers:
       '@midwayjs/koa': 3.3.6_@midwayjs+decorator@3.3.4
       '@midwayjs/logger': 2.16.3
       '@midwayjs/validate': 3.3.11
+      dayjs: 1.11.3
       dotenv: 16.0.1
       qiniu: 7.7.0
     devDependencies:
@@ -1549,7 +1551,7 @@ packages:
     dev: true
 
   /@types/superagent/4.1.15:
-    resolution: {integrity: sha512-iiXaOL2wSbnSY4qg0mFPWJHL9iwyEsoNYwaHF2w58/fsVAQJlj+KUfFAFZu+nzbz+b7dUprJEAc+O9vhHHhQTA==, tarball: '@types/superagent/-/superagent-4.1.14.tgz'}
+    resolution: {integrity: sha512-iiXaOL2wSbnSY4qg0mFPWJHL9iwyEsoNYwaHF2w58/fsVAQJlj+KUfFAFZu+nzbz+b7dUprJEAc+O9vhHHhQTA==, tarball: '@types/superagent/-/superagent-4.1.15.tgz'}
     deprecated: '[WARNING] Use 4.1.14 instead of 4.1.15, reason: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/58445'
     dependencies:
       '@types/cookiejar': 2.1.2
@@ -5239,7 +5241,7 @@ packages:
       jest-validate: 26.6.2
       micromatch: 4.0.5
       pretty-format: 26.6.2
-      ts-node: 10.8.1_typescript@4.7.3
+      ts-node: 10.8.1_7nd5ve2pkl6wswjs5tie7bdoly
     transitivePeerDependencies:
       - bufferutil
       - canvas

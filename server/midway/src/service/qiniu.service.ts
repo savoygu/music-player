@@ -103,6 +103,28 @@ export class QiniuService {
     return privateDownloadUrl;
   }
 
+  // 移动或重命名文件
+  async moveFile(filename, newFilename) {
+    return new Promise((resolve, reject) => {
+      this.bucketManager.move(
+        this.qiniuConfig.bucket,
+        filename,
+        this.qiniuConfig.bucket,
+        newFilename,
+        {
+          force: true,
+        },
+        (respErr, respBody, respInfo) => {
+          if (respErr) {
+            reject(respErr);
+          } else {
+            resolve(respBody);
+          }
+        }
+      );
+    });
+  }
+
   // 删除文件
   async deleteFile(filename) {
     return new Promise((resolve, reject) => {
