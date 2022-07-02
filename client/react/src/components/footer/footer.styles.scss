@@ -1,0 +1,13 @@
+.footer {
+  @apply absolute left-0 bottom-0 flex justify-center items-center h-10 leading-10 w-full;
+
+  a {
+    color: var(--theme-default);
+  }
+
+  & .i-icon {
+    path {
+      stroke: var(--theme-default);
+    }
+  }
+}

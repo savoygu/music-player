@@ -1,0 +1,21 @@
+.player-title {
+  color: var(--theme-default);
+}
+
+.player-music-time {
+  @apply w-10 text-gray-500 text-sm;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.playing {
+  animation: rotate 20s linear infinite;
+}

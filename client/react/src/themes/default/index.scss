@@ -1,0 +1,19 @@
+// @import "../common/reset.scss";
+@import 'modern-normalize/modern-normalize.css';
+@import '../common/icon';
+
+/* stylelint-disable scss/at-rule-no-unknown  */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable scss/at-rule-no-unknown */
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: #f0f0f0;
+}
