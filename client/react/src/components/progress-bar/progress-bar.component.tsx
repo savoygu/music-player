@@ -9,7 +9,7 @@ import {
 } from 'react'
 import { useEvent, useUpdateEffect } from 'react-use'
 
-import './progress.styles.scss'
+import './progress-bar.styles.scss'
 
 type ProgressBarProps = {
   progress: number
