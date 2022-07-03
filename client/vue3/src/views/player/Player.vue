@@ -3,16 +3,9 @@ import { computed } from 'vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import { usePlayerStore } from '@/store/player'
 import { formatTime } from '@/utils'
+import emitter from '@/utils/emitter'
 import useCd from './useCd'
 import useModel from './useMode'
-
-// eslint-disable-next-line func-call-spacing
-const emit = defineEmits<{
-  (e: 'player:prev'): void,
-  (e: 'player:next'): void,
-  (e: 'player:timechange', currentTime: number): void
-  (e: 'player:volumechange', volume: number): void
-}>()
 
 // store
 const playerStore = usePlayerStore()
@@ -39,8 +32,8 @@ const togglePlay = () => {
   playerStore.setPlaying(!playing.value)
 }
 
-const prev = () => emit('player:prev')
-const next = () => emit('player:next')
+const prev = () => emitter.emit('prev')
+const next = () => emitter.emit('next')
 
 const onProgressChanging = (progress: number) => {
   playerStore.setProgressChanging(true)
@@ -51,14 +44,14 @@ const onProgressChanged = (progress: number) => {
 
   const currentTime = currentSong.value.duration! * progress
   playerStore.setCurrentTime(currentTime)
-  emit('player:timechange', currentTime)
+  emitter.emit('changeTime', currentTime)
 
   if (!playing.value) { playerStore.setPlaying(true) }
 }
 
 const onVolumeChange = (volume: number) => {
   playerStore.setVolume(volume)
-  emit('player:volumechange', volume)
+  emitter.emit('changeVolume', volume)
 }
 
 </script>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
-import { PLAY_MODE } from '@/utils/enums'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { usePlayerStore } from '@/store/player'
-import { equals } from '@/utils'
+import { PLAY_MODE } from '@/utils/enums'
+import emitter from '@/utils/emitter'
 
 // store
 const playerStore = usePlayerStore()
@@ -20,14 +20,14 @@ const audioRef = ref(null)
 const isReady = ref(false)
 
 // watch
-watch(currentSong, (newSong, oldSong) => {
-  if (!newSong.url) return
+watch(() => currentSong.value?.url, (newUrl) => {
+  if (!newUrl) return
   // newSong(来自playList[currentIndex]) 和 oldSong(来自本地存储) 引用不同但数据一致
-  if (equals(newSong, oldSong)) return
+  // if (equals(newSong, oldSong)) return
 
   isReady.value = false
   const audioEl: HTMLAudioElement = audioRef.value!
-  audioEl.src = newSong.url
+  audioEl.src = newUrl
   audioEl.play()
 })
 watch(playing, (newPlaying) => {
@@ -35,16 +35,6 @@ watch(playing, (newPlaying) => {
 
   const audioEl: HTMLAudioElement = audioRef.value!
   newPlaying ? audioEl.play() : audioEl.pause()
-})
-
-// lifecycle
-onMounted(() => {
-  if (currentSong.value) {
-    const audioEl: HTMLAudioElement = audioRef.value!
-    audioEl.src = currentSong.value.url
-    audioEl.currentTime = currentTime.value
-    audioEl.volume = volume.value
-  }
 })
 
 // methods
@@ -119,6 +109,28 @@ const end = () => {
 const changeVolume = (volume: number) => {
   (audioRef.value! as HTMLAudioElement).volume = volume
 }
+
+// lifecycle
+onMounted(() => {
+  if (currentSong.value) {
+    const audioEl: HTMLAudioElement = audioRef.value!
+    audioEl.src = currentSong.value.url
+    audioEl.currentTime = currentTime.value
+    audioEl.volume = volume.value
+  }
+
+  emitter.on('prev', prev)
+  emitter.on('next', prev)
+  emitter.on('changeTime', changeTime)
+  emitter.on('changeVolume', changeVolume)
+})
+
+onUnmounted(() => {
+  emitter.off('prev', prev)
+  emitter.off('next', next)
+  emitter.off('changeTime', changeTime)
+  emitter.off('changeVolume', changeTime)
+})
 
 defineExpose({
   prev,

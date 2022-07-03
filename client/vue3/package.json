@@ -11,6 +11,7 @@
   "dependencies": {
     "@icon-park/vue-next": "^1.4.0",
     "@vueuse/core": "^8.6.0",
+    "mitt": "^3.0.0",
     "pinia": "^2.0.14",
     "pinia-plugin-persist": "^1.0.0",
     "vue": "^3.2.25",

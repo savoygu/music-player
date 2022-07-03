@@ -82,6 +82,7 @@ importers:
       eslint-plugin-n: ^15.0.0
       eslint-plugin-promise: ^6.0.0
       eslint-plugin-vue: ^9.1.0
+      mitt: ^3.0.0
       modern-normalize: ^1.1.0
       pinia: ^2.0.14
       pinia-plugin-persist: ^1.0.0
@@ -103,6 +104,7 @@ importers:
     dependencies:
       '@icon-park/vue-next': 1.4.1_vue@3.2.37
       '@vueuse/core': 8.7.5_vue@3.2.37
+      mitt: 3.0.0
       pinia: 2.0.14_j6bzmzd4ujpabbp5objtwxyjp4
       pinia-plugin-persist: 1.0.0_pinia@2.0.14+vue@3.2.37
       vue: 3.2.37
