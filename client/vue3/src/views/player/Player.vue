@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { VolumeMute, VolumeSmall, VolumeNotice, PauseOne, Play, GoStart, GoEnd } from '@icon-park/vue-next'
 import ProgressBar from '@/components/ProgressBar.vue'
 import { usePlayerStore } from '@/store/player'
 import { formatTime } from '@/utils'
 import emitter from '@/utils/emitter'
 import useCd from './useCd'
-import useModel from './useMode'
+import useMode from './useMode'
 
 // store
 const playerStore = usePlayerStore()
@@ -15,16 +16,19 @@ const currentTime = computed(() => playerStore.currentTime)
 const volume = computed(() => playerStore.volume)
 
 // hooks
-const { modeIcon, changeMode } = useModel()
+const { currentMode, changeMode } = useMode()
 const { cdRef, cdCoverRef, cdClass } = useCd()
 
 // computed
-const playIcon = computed(() => {
-  return playing.value ? 'icon-pause' : 'icon-play'
+const PlayPause = computed(() => {
+  return playing.value ? PauseOne : Play
 })
 const progress = computed(() => {
   const duration = currentSong.value?.duration ?? 0
   return currentTime.value / duration
+})
+const Volume = computed(() => {
+  return volume.value === 0 ? VolumeMute : volume.value < 0.3 ? VolumeSmall : VolumeNotice
 })
 
 // methods
@@ -89,29 +93,50 @@ const onVolumeChange = (volume: number) => {
             {{ formatTime(currentSong?.duration) }}
           </span>
         </div>
-        <div class="flex justify-between mt-10">
-          <i
-            class="icon cursor-pointer"
-            :class="modeIcon"
+        <div class="player-control flex items-center justify-between mt-10">
+          <component
+            :is="currentMode"
+            class="cursor-pointer"
+            theme="outline"
+            size="28"
+            :stroke-width="3"
+            fill="#4b5563"
             @click="changeMode"
           />
-          <span>
-            <i
-              class="icon icon-prev cursor-pointer"
+          <span class="inline-flex items-center">
+            <GoStart
+              class="cursor-pointer"
+              theme="outline"
+              size="32"
+              fill="#4b5563"
+              :stroke-width="3"
               @click="prev"
             />
-            <i
-              class="icon cursor-pointer ml-5"
-              :class="playIcon"
+            <component
+              :is="PlayPause"
+              class="cursor-pointer ml-5"
+              theme="outline"
+              size="40"
+              fill="#4b5563"
+              :stroke-width="3"
               @click="togglePlay"
             />
-            <i
-              class="icon icon-next cursor-pointer ml-5"
+            <GoEnd
+              class="cursor-pointer ml-5"
+              theme="outline"
+              size="32"
+              fill="#4b5563"
+              :stroke-width="3"
               @click="next"
             />
           </span>
           <div class="inline-flex items-center ">
-            <i class="icon icon-volume" />
+            <component
+              :is="Volume"
+              theme="outline"
+              size="16"
+              fill="#4b5563"
+            />
             <div class="w-16 ml-1.5">
               <ProgressBar
                 :progress="volume"
@@ -143,6 +168,15 @@ const onVolumeChange = (volume: number) => {
 <style lang="scss" scoped>
 .player-title {
   color: var(--theme-default);
+}
+
+.player-control {
+  & ::v-deep(.i-icon) {
+    path,
+    rect {
+      stroke: var(--theme-default);
+    }
+  }
 }
 
 .music-time {
