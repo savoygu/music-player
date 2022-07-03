@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffectOnce } from 'react-use'
 import { ViewGridCard, ViewGridList } from '@icon-park/react'
@@ -15,9 +15,7 @@ import { MODE, STORAGE } from '@/utils/enums'
 
 import './musics.styles.scss'
 
-interface MusicListProps { }
-
-const MusicList: FC<MusicListProps> = () => {
+const MusicList = () => {
   // selectors
   const { currentTab, currentMode, onlineMusics, localMusics } =
     useSelector(selectMusicsReducer)

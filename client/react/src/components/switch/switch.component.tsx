@@ -20,7 +20,20 @@ interface SwitchProps {
 const ON_COLOR = '#6bc30d'
 const OFF_COLOR = '#fdfdfd'
 
-const Switch: FC<SwitchProps> = ({ value, labelText, onText = '开', offText = '关', onLeverBgColor = ON_COLOR, offLeverBgColor = OFF_COLOR, onTextColor = ON_COLOR, offTextColor = ON_COLOR, onBgColor = OFF_COLOR, offBgColor = OFF_COLOR, disabled = false, onChange }) => {
+const Switch: FC<SwitchProps> = ({
+  value,
+  labelText,
+  onText = '开',
+  offText = '关',
+  onLeverBgColor = ON_COLOR,
+  offLeverBgColor = OFF_COLOR,
+  onTextColor = ON_COLOR,
+  offTextColor = ON_COLOR,
+  onBgColor = OFF_COLOR,
+  offBgColor = OFF_COLOR,
+  disabled = false,
+  onChange
+}) => {
   // state
   const [checked, setChecked] = useState(value)
   const [switchStyle, setSwitchStyle] = useState({})
@@ -39,31 +52,33 @@ const Switch: FC<SwitchProps> = ({ value, labelText, onText = '开', offText = '
     })
   }, [checked, onTextColor, offTextColor, onBgColor, offBgColor])
 
-  return <div className="switch">
-    <label>
-      <span className="switch-text">
-        {labelText}
-      </span>
-      <input
-        v-model="checked"
-        type="checkbox"
-        defaultChecked={checked}
-        disabled={disabled}
-        onChange={handleChange}
-      />
-      <div
-        className="switch-lever"
-        style={{ backgroundColor: checked ? onLeverBgColor : offLeverBgColor }}
-      >
-        <span
-          className={checked ? 'switch-on' : 'switch-off'}
-          style={switchStyle}
+  return (
+    <div className="switch">
+      <label>
+        <span className="switch-text">{labelText}</span>
+        <input
+          v-model="checked"
+          type="checkbox"
+          defaultChecked={checked}
+          disabled={disabled}
+          onChange={handleChange}
+        />
+        <div
+          className="switch-lever"
+          style={{
+            backgroundColor: checked ? onLeverBgColor : offLeverBgColor
+          }}
         >
-          {checked ? onText : offText}
-        </span>
-      </div>
-    </label >
-  </div >
+          <span
+            className={checked ? 'switch-on' : 'switch-off'}
+            style={switchStyle}
+          >
+            {checked ? onText : offText}
+          </span>
+        </div>
+      </label>
+    </div>
+  )
 }
 
 export default Switch

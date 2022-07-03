@@ -20,7 +20,14 @@ const rootPersistConfig: ExtendedPersistConfig<RootState> = {
 const playerPersistConfig: ExtendedPersistConfig<PlayerState> = {
   key: 'music-player:player',
   storage,
-  whitelist: ['sequenceList', 'playList', 'playMode', 'currentIndex', 'currentTime', 'volume']
+  whitelist: [
+    'sequenceList',
+    'playList',
+    'playMode',
+    'currentIndex',
+    'currentTime',
+    'volume'
+  ]
 }
 
 const rootReducer = combineReducers<RootState>({

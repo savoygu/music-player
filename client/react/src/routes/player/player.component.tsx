@@ -1,9 +1,22 @@
-import { selectCurrentSong, selectPlayerReducer } from '@/store/selectors'
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import {
+  GoStart,
+  GoEnd,
+  Play,
+  PauseOne,
+  VolumeMute,
+  VolumeSmall,
+  VolumeNotice,
+  PlayCycle,
+  ShuffleOne,
+  PlayOnce
+} from '@icon-park/react'
 
 import ProgressBar from '@/components/progress-bar/progress-bar.component'
+import IconPark from '@/components/icon-park/icon-park.component'
+import { selectCurrentSong, selectPlayerReducer } from '@/store/selectors'
 import {
   setCurrentTime,
   setPlaying,
@@ -12,14 +25,13 @@ import {
 } from '@/store/slices/player'
 import { formatTime } from '@/utils'
 import emitter from '@/utils/emitter'
+import { PLAY_MODE } from '@/utils/enums'
 import useMode from './useMode'
 import useCd from './useCd'
 
 import './player.styles.scss'
 
-interface PlayerProps { }
-
-const Player: FC<PlayerProps> = () => {
+const Player = () => {
   // selectors
   const currentSong = useSelector(selectCurrentSong)
   const { playing, currentTime, volume } = useSelector(selectPlayerReducer)
@@ -34,7 +46,6 @@ const Player: FC<PlayerProps> = () => {
   const _setVolume = (volume: number) => dispatch(setVolume(volume))
 
   // state
-  const [playIcon, setPlayIcon] = useState('')
   const [progress, setProgress] = useState(0)
 
   // handlers
@@ -66,12 +77,8 @@ const Player: FC<PlayerProps> = () => {
   }
 
   // hooks
-  const { modeIcon, changeMode } = useMode()
+  const { playMode, changeMode } = useMode()
   const { cdRef, cdCoverRef, cdClass } = useCd()
-
-  useEffect(() => {
-    setPlayIcon(playing ? 'icon-pause' : 'icon-play')
-  }, [playing])
 
   useEffect(() => {
     const duration = currentSong?.duration ?? 0
@@ -94,7 +101,9 @@ const Player: FC<PlayerProps> = () => {
             </span>
           </div>
           <div className="flex items-center mt-8">
-            <span className="player-music-time mr-1.5">{formatTime(currentTime)}</span>
+            <span className="player-music-time mr-1.5">
+              {formatTime(currentTime)}
+            </span>
             <div className="flex-1">
               <ProgressBar
                 progress={progress}
@@ -106,24 +115,39 @@ const Player: FC<PlayerProps> = () => {
               {formatTime(currentSong?.duration)}
             </span>
           </div>
-          <div className="flex justify-between mt-10">
-            <i
-              className={`icon cursor-pointer ${modeIcon}`}
+          <div className="player-control flex items-center justify-between mt-10">
+            <IconPark
+              Comp={
+                playMode === PLAY_MODE.SEQUENCE
+                  ? PlayCycle
+                  : playMode === PLAY_MODE.RANDOM
+                  ? ShuffleOne
+                  : PlayOnce
+              }
+              size={28}
               onClick={changeMode}
             />
-            <span>
-              <i className="icon icon-prev cursor-pointer" onClick={prev} />
-              <i
-                className={`icon cursor-pointer ml-5 ${playIcon}`}
+            <span className="inline-flex items-center">
+              <IconPark Comp={GoStart} onClick={prev} />
+              <IconPark
+                Comp={playing ? PauseOne : Play}
+                className="ml-5"
+                size={40}
                 onClick={togglePlay}
               />
-              <i
-                className="icon icon-next cursor-pointer ml-5"
-                onClick={next}
-              />
+              <IconPark Comp={GoEnd} className="ml-5" onClick={next} />
             </span>
             <div className="inline-flex items-center ">
-              <i className="icon icon-volume" />
+              <IconPark
+                Comp={
+                  volume === 0
+                    ? VolumeMute
+                    : volume < 0.3
+                    ? VolumeSmall
+                    : VolumeNotice
+                }
+                size={16}
+              />
               <div className="w-16 ml-1.5">
                 <ProgressBar
                   progress={volume}

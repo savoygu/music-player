@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FC, useEffect, useRef, useState } from 'react'
+import { ChangeEventHandler, useEffect, useRef, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffectOnce } from 'react-use'
@@ -11,7 +11,7 @@ import {
   selectMusicsReducer,
   selectPlayerReducer,
   selectPlayList,
-  selectTheme,
+  selectTheme
 } from '@/store/selectors'
 import { setTheme } from '@/store/slices/theme'
 import { STORAGE, THEME } from '@/utils/enums'
@@ -20,9 +20,7 @@ import Logo from '@/assets/logo.png'
 
 import './navigation.styles.scss'
 
-interface NavigationProps { }
-
-const Navigation: FC<NavigationProps> = () => {
+const Navigation = () => {
   // selectors
   const { currentTab } = useSelector(selectMusicsReducer)
   const { currentIndex } = useSelector(selectPlayerReducer)
@@ -49,8 +47,10 @@ const Navigation: FC<NavigationProps> = () => {
   useEffectOnce(() => {
     const onPlay = () => audioRef.current?.prev()
     const onNext = () => audioRef.current?.next()
-    const onChangeTime = (currentTime: number) => audioRef.current?.changeTime(currentTime)
-    const onChangeVolume = (volume: number) => audioRef.current?.changeVolume(volume)
+    const onChangeTime = (currentTime: number) =>
+      audioRef.current?.changeTime(currentTime)
+    const onChangeVolume = (volume: number) =>
+      audioRef.current?.changeVolume(volume)
 
     emitter.on('prev', onPlay)
     emitter.on('next', onNext)

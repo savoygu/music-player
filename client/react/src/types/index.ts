@@ -26,7 +26,7 @@ export type ThemeState = {
 }
 
 export type PlayerStateWithPersist = {
-  playerState: PlayerState,
+  playerState: PlayerState
   _persist: PersistState
 }
 

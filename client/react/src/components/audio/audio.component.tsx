@@ -1,4 +1,11 @@
-import { forwardRef, ForwardRefRenderFunction, ReactEventHandler, useImperativeHandle, useRef, useState } from 'react'
+import {
+  forwardRef,
+  ForwardRefRenderFunction,
+  ReactEventHandler,
+  useImperativeHandle,
+  useRef,
+  useState
+} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffectOnce, useUpdateEffect } from 'react-use'
 
@@ -18,7 +25,8 @@ import { PLAY_MODE } from '@/utils/enums'
 
 import './audio.styles.scss'
 
-interface AudioProps { }
+interface AudioProps {}
+
 export type AudioRef = {
   prev: () => void
   next: () => void
@@ -26,7 +34,10 @@ export type AudioRef = {
   changeVolume: (volume: number) => void
 }
 
-const Audio: ForwardRefRenderFunction<AudioRef, AudioProps> = (props, forwardedRef) => {
+const Audio: ForwardRefRenderFunction<AudioRef, AudioProps> = (
+  props,
+  forwardedRef
+) => {
   // selectors
   const {
     playing,

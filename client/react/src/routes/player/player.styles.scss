@@ -2,6 +2,15 @@
   color: var(--theme-default);
 }
 
+.player-control {
+  & .i-icon {
+    path,
+    rect {
+      stroke: var(--theme-default);
+    }
+  }
+}
+
 .player-music-time {
   @apply w-10 text-gray-500 text-sm;
 }

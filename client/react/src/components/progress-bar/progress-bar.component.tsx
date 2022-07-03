@@ -49,7 +49,8 @@ const ProgressBar: FC<ProgressBarProps> = ({
     if (!touching) return
     const delta = ('touches' in e ? e.touches[0].pageX : e.pageX) - touch.x1 // 鼠标移动距离
     const endWidth = touch.beginWidth + delta // 进度条最终进度
-    const barWidth = barRef.current!.clientWidth - (hasBtn ? progressBarWidth : 0)
+    const barWidth =
+      barRef.current!.clientWidth - (hasBtn ? progressBarWidth : 0)
     const progress = Math.min(1, Math.max(endWidth / barWidth, 0))
     setOffset(barWidth * progress)
 
@@ -59,7 +60,8 @@ const ProgressBar: FC<ProgressBarProps> = ({
     if (!touching) return
     touching = false
 
-    const barWidth = barRef.current!.clientWidth - (hasBtn ? progressBarWidth : 0)
+    const barWidth =
+      barRef.current!.clientWidth - (hasBtn ? progressBarWidth : 0)
     const progress = progressRef.current?.clientWidth! / barWidth
     onProgressChanged(progress)
   }
@@ -68,7 +70,8 @@ const ProgressBar: FC<ProgressBarProps> = ({
 
     const rect = barRef.current.getBoundingClientRect()
     const offsetWidth = e.pageX - rect.left
-    const barWidth = barRef.current.clientWidth - (hasBtn ? progressBarWidth : 0)
+    const barWidth =
+      barRef.current.clientWidth - (hasBtn ? progressBarWidth : 0)
     const progress = Math.min(1, Math.max(offsetWidth / barWidth, 0))
 
     onProgressChanged(progress)
@@ -89,7 +92,8 @@ const ProgressBar: FC<ProgressBarProps> = ({
   useEffect(() => {
     if (!barRef.current) return
 
-    const barWidth = barRef.current.clientWidth - (hasBtn ? progressBarWidth : 0)
+    const barWidth =
+      barRef.current.clientWidth - (hasBtn ? progressBarWidth : 0)
     setOffset(barWidth * progress)
   }, [progress, hasBtn])
 

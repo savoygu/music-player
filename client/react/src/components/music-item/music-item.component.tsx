@@ -38,12 +38,11 @@ const MusicItem: FC<MusicItemProps> = ({ currentTab, musicItem, onClick }) => {
   const [isActive, setIsActive] = useState(false)
   const [inLocal, setInLocal] = useState(false)
 
-
   // hooks
   useEffect(() => {
     setIsActive(
       musicItem.title === currentSong?.title &&
-      musicItem.artist === currentSong?.artist
+        musicItem.artist === currentSong?.artist
     )
   }, [currentSong, musicItem])
 
@@ -95,7 +94,7 @@ const MusicItem: FC<MusicItemProps> = ({ currentTab, musicItem, onClick }) => {
           />
         )}
       </div>
-    </div >
+    </div>
   )
 }
 
