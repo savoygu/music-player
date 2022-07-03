@@ -3,7 +3,7 @@ import { Icon, IIconProps } from '@icon-park/react/es/runtime'
 
 import './icon-park.styles.scss'
 
-interface IconParkProps {
+type IconParkProps = {
   Comp: Icon
   className?: string
   onClick?: () => void

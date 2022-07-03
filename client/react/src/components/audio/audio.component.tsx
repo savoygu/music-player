@@ -25,7 +25,7 @@ import { PLAY_MODE } from '@/utils/enums'
 
 import './audio.styles.scss'
 
-interface AudioProps {}
+type AudioProps = {}
 
 export type AudioRef = {
   prev: () => void

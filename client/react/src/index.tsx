@@ -4,8 +4,9 @@ import { Provider } from 'react-redux'
 import { HashRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import App from './App'
+import { ToastProvider } from '@/components/toast'
 import store, { persistor } from './store'
+import App from './App'
 
 import './themes/default/index.scss'
 
@@ -15,7 +16,9 @@ root.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <HashRouter>
-          <App />
+          <ToastProvider>
+            <App />
+          </ToastProvider>
         </HashRouter>
       </PersistGate>
     </Provider>

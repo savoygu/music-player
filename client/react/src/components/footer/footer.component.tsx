@@ -3,7 +3,7 @@ import { FC } from 'react'
 
 import './footer.styles.scss'
 
-interface FooterProps {}
+type FooterProps = {}
 
 const Footer: FC<FooterProps> = () => {
   return (

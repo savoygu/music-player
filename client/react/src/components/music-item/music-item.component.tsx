@@ -9,14 +9,18 @@ import { STORAGE } from '@/utils/enums'
 import { MusicItem as TMusicItem } from '@/types'
 
 import './music-item.styles.scss'
+import { useToast } from '../toast'
 
-interface MusicItemProps {
+type MusicItemProps = {
   musicItem: TMusicItem
   currentTab: STORAGE
   onClick: () => void
 }
 
 const MusicItem: FC<MusicItemProps> = ({ currentTab, musicItem, onClick }) => {
+  // context
+  const toast = useToast()
+
   // selectors
   const { localMusics } = useSelector(selectMusicsReducer)
   const currentSong = useSelector(selectCurrentSong)
@@ -27,11 +31,14 @@ const MusicItem: FC<MusicItemProps> = ({ currentTab, musicItem, onClick }) => {
     event.stopPropagation()
 
     dispatch(addToLocal(musicItem))
+
+    toast.open('已添加到本地')
   }
   const _removeFromLocal: MouseEventHandler<HTMLSpanElement> = (event) => {
     event.stopPropagation()
 
     dispatch(removeFromLocal(musicItem))
+    toast.open('移除成功')
   }
 
   // state
