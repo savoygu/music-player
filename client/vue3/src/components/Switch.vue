@@ -35,16 +35,17 @@ const emit = defineEmits<{(e: 'update:modelValue', modelValue: boolean): void}>(
 
 const checked = ref(props.modelValue)
 
-function handleChange () {
-  emit('update:modelValue', checked.value ? props.onValue : props.offValue)
-}
-
 const switchStyle = computed(() => {
   return {
     color: checked.value ? props.onTextColor : props.offTextColor,
     backgroundColor: checked.value ? props.onBgColor : props.offBgColor
   }
 })
+
+function handleChange () {
+  emit('update:modelValue', checked.value ? props.onValue : props.offValue)
+}
+
 </script>
 
 <template>

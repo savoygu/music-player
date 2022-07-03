@@ -18,6 +18,8 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
-    'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': 'off',
+    'no-used-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error']
   }
 }

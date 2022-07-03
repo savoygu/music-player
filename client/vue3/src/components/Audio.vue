@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { PLAY_MODE } from '@/constant'
+import { computed, onMounted, ref, watch } from 'vue'
+import { PLAY_MODE } from '@/utils/enums'
 import { usePlayerStore } from '@/store/player'
 import { equals } from '@/utils'
-import { computed, onMounted, ref, watch } from 'vue'
-
-// reactive
-const audioRef = ref(null)
-const isReady = ref(false)
 
 // store
 const playerStore = usePlayerStore()
@@ -19,14 +15,9 @@ const currentTime = computed(() => playerStore.currentTime)
 const progressChanging = computed(() => playerStore.progressChanging)
 const volume = computed(() => playerStore.volume)
 
-onMounted(() => {
-  if (currentSong.value) {
-    const audioEl: HTMLAudioElement = audioRef.value!
-    audioEl.src = currentSong.value.url
-    audioEl.currentTime = currentTime.value
-    audioEl.volume = volume.value
-  }
-})
+// reactive
+const audioRef = ref(null)
+const isReady = ref(false)
 
 // watch
 watch(currentSong, (newSong, oldSong) => {
@@ -44,6 +35,16 @@ watch(playing, (newPlaying) => {
 
   const audioEl: HTMLAudioElement = audioRef.value!
   newPlaying ? audioEl.play() : audioEl.pause()
+})
+
+// lifecycle
+onMounted(() => {
+  if (currentSong.value) {
+    const audioEl: HTMLAudioElement = audioRef.value!
+    audioEl.src = currentSong.value.url
+    audioEl.currentTime = currentTime.value
+    audioEl.volume = volume.value
+  }
 })
 
 // methods

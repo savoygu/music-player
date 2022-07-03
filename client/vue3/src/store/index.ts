@@ -1,10 +1,9 @@
-import { THEME } from '@/constant'
-import { Theme } from '@/types'
 import { createPinia, defineStore } from 'pinia'
 import piniaPersist from 'pinia-plugin-persist'
+import { THEME } from '@/utils/enums'
 
 interface RootState {
-  theme: Theme,
+  theme: THEME
 }
 
 export const useStore = defineStore('main', {
@@ -24,7 +23,7 @@ export const useStore = defineStore('main', {
     ]
   },
   actions: {
-    setTheme (theme: Theme) {
+    setTheme (theme: THEME) {
       this.theme = theme
     }
   }

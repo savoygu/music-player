@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { STORAGE, THEME } from '@/constant'
 import { useStore } from '@/store'
 import { useMusicStore } from '@/store/musiclist'
 import { usePlayerStore } from '@/store/player'
 import Switch from '@/components/Switch.vue'
+import { STORAGE, THEME } from '@/utils/enums'
 import { setTheme } from '@/themes'
 
+// store
 const store = useStore()
 const musicStore = useMusicStore()
 const playerStore = usePlayerStore()
@@ -18,7 +19,10 @@ const musicList = computed(() => currentTab.value === STORAGE.ONLINE
 const currentSong = computed(() => playerStore.currentSong)
 const currentIndex = computed(() => musicList.value.findIndex(item => item.title === currentSong.value.title && item.artist === currentSong.value.artist))
 
+// reactive
 const themeRef = ref(store.theme === THEME.GREEN)
+
+// watch
 watch(themeRef, (newTheme) => {
   const newThemeVal = newTheme ? THEME.GREEN : THEME.ORANGE
   setTheme(newThemeVal)

@@ -3,13 +3,13 @@ import { computed, toRefs } from 'vue'
 import { FolderDownload, Delete } from '@icon-park/vue-next'
 import { useMusicStore } from '@/store/musiclist'
 import { usePlayerStore } from '@/store/player'
-import { MusicItem, Storage } from '@/types'
-import { STORAGE } from '@/constant'
+import { MusicItem } from '@/types'
+import { STORAGE } from '@/utils/enums'
 import createToast from './toast'
 
 const props = defineProps<{
   musicItem: MusicItem
-  currentTab: Storage
+  currentTab: STORAGE
 }>()
 const { musicItem, currentTab } = toRefs(props)
 

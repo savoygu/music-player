@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { ViewGridList, ViewGridCard } from '@icon-park/vue-next'
 import MusicItem from '@/components/MusicItem.vue'
 import { useMusicStore } from '@/store/musiclist'
 import { usePlayerStore } from '@/store/player'
-import { STORAGE, MODE } from '@/constant'
-import { MusicItem as IMusicItem, Storage, Mode } from '@/types'
+import { STORAGE, MODE } from '@/utils/enums'
+import { MusicItem as IMusicItem } from '@/types'
 
 // store
 const playerStore = usePlayerStore()
@@ -22,10 +22,10 @@ const musicList = computed(() =>
 )
 
 // methods
-const switchTab = (tab: Storage) => {
+const switchTab = (tab: STORAGE) => {
   tabRef.value = tab
 }
-const switchMode = (mode: Mode) => {
+const switchMode = (mode: MODE) => {
   musicStore.setCurrentMode(mode)
 }
 const selectItem = (song: IMusicItem, index: number) => {
@@ -36,10 +36,10 @@ const selectItem = (song: IMusicItem, index: number) => {
   })
 }
 
-fetchMusics()
-function fetchMusics () {
+// lifecycle
+onMounted(() => {
   musicStore.fetchMusics()
-}
+})
 
 </script>
 

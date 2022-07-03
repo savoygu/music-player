@@ -39,9 +39,9 @@ const togglePlay = () => {
   playerStore.setPlaying(!playing.value)
 }
 
-// emits
 const prev = () => emit('player:prev')
 const next = () => emit('player:next')
+
 const onProgressChanging = (progress: number) => {
   playerStore.setProgressChanging(true)
   playerStore.setCurrentTime(currentSong.value.duration! * progress)
@@ -55,6 +55,7 @@ const onProgressChanged = (progress: number) => {
 
   if (!playing.value) { playerStore.setPlaying(true) }
 }
+
 const onVolumeChange = (volume: number) => {
   playerStore.setVolume(volume)
   emit('player:volumechange', volume)

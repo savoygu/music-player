@@ -1,7 +1,6 @@
-import { PLAY_MODE } from '@/constant'
-import { usePlayerStore } from '@/store/player'
-import { PlayMode } from '@/types'
 import { computed } from 'vue'
+import { PLAY_MODE } from '@/utils/enums'
+import { usePlayerStore } from '@/store/player'
 
 export default function useModel () {
   const playerStore = usePlayerStore()
@@ -27,7 +26,7 @@ export default function useModel () {
 
   const changeMode = () => {
     const mode = (playMode.value + 1) % 3
-    playerStore.changeMode(mode as PlayMode)
+    playerStore.changeMode(mode)
   }
 
   return {

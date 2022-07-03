@@ -1,14 +1,14 @@
-import { PLAY_MODE } from '@/constant'
-import { MusicItem, PlayMode } from '@/types'
+import { defineStore } from 'pinia'
+import { PLAY_MODE } from '@/utils/enums'
+import { MusicItem } from '@/types'
 import { shuffle } from '@/utils'
-import { defineStore, StoreState } from 'pinia'
 import musicList from './musiclist.json'
 
 interface PlayerState {
   sequenceList: MusicItem[]
   playList: MusicItem[]
   playing: boolean
-  playMode: PlayMode
+  playMode: PLAY_MODE
   currentIndex: number
   currentTime: number
   volume: number
@@ -16,7 +16,7 @@ interface PlayerState {
 }
 
 export const usePlayerStore = defineStore('player', {
-  state: (): StoreState<PlayerState> => {
+  state: (): PlayerState => {
     return {
       sequenceList: musicList,
       playList: musicList,
@@ -34,12 +34,19 @@ export const usePlayerStore = defineStore('player', {
       {
         key: 'music-player_player',
         storage: localStorage,
-        paths: ['sequenceList', 'playList', 'playMode', 'currentIndex', 'currentTime', 'volume']
+        paths: [
+          'sequenceList',
+          'playList',
+          'playMode',
+          'currentIndex',
+          'currentTime',
+          'volume'
+        ]
       }
     ]
   },
   getters: {
-    currentSong: state => state.playList[state.currentIndex]
+    currentSong: (state) => state.playList[state.currentIndex]
   },
   actions: {
     setPlaying (playing: boolean) {
@@ -51,7 +58,7 @@ export const usePlayerStore = defineStore('player', {
     setPlayList (playList: MusicItem[]) {
       this.playList = playList
     },
-    setPlayMode (playMode: PlayMode) {
+    setPlayMode (playMode: PLAY_MODE) {
       this.playMode = playMode
     },
     setCurrentIndex (currentIndex: number) {
@@ -67,7 +74,10 @@ export const usePlayerStore = defineStore('player', {
       this.progressChanging = progressChanging
     },
 
-    selectPlay ({ sequenceList: list, currentIndex }: Pick<PlayerState, 'sequenceList' | 'currentIndex'>) {
+    selectPlay ({
+      sequenceList: list,
+      currentIndex
+    }: Pick<PlayerState, 'sequenceList' | 'currentIndex'>) {
       this.setSequenceList(list)
       this.setPlayList(list)
       this.setPlaying(true)
@@ -83,14 +93,16 @@ export const usePlayerStore = defineStore('player', {
       this.setCurrentIndex(0)
     },
 
-    changeMode (mode: PlayMode) {
+    changeMode (mode: PLAY_MODE) {
       const { title, artist } = this.currentSong
       if (mode === PLAY_MODE.RANDOM) {
         this.setPlayList(shuffle(this.sequenceList))
       } else {
         this.setPlayList(this.sequenceList)
       }
-      const index = this.playList.findIndex(item => item.title === title && item.artist === artist)
+      const index = this.playList.findIndex(
+        (item) => item.title === title && item.artist === artist
+      )
       this.setCurrentIndex(index)
       this.setPlayMode(mode)
     }

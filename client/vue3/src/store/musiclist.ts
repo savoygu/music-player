@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia'
-import { MusicItem, Storage, Mode } from '@/types'
-import { BASE_URL, MODE, STORAGE } from '@/constant'
+import { MusicItem } from '@/types'
+import { BASE_URL } from '@/utils/constants'
+import { MODE, STORAGE } from '@/utils/enums'
 import musicList from './musiclist.json'
 
 interface MusicState {
-  currentTab: Storage,
-  currentMode: Mode,
-  onlineMusics: MusicItem[],
+  currentTab: STORAGE
+  currentMode: MODE
+  onlineMusics: MusicItem[]
   localMusics: MusicItem[]
 }
 
@@ -27,18 +28,23 @@ export const useMusicStore = defineStore('musiclist', {
     ]
   },
   actions: {
-    setCurrentTab (currentTab: Storage) {
+    setCurrentTab (currentTab: STORAGE) {
       this.currentTab = currentTab
     },
-    setCurrentMode (currentMode: Mode) {
+    setCurrentMode (currentMode: MODE) {
       this.currentMode = currentMode
     },
 
     async fetchMusics () {
-      const res = await fetch(BASE_URL + '/qiniu/get_musics?filename=default.json')
-        .then(response => response.json())
-      if (res.success) {
-        this.onlineMusics = res.data
+      try {
+        const res = await fetch(
+          BASE_URL + '/qiniu/get_musics?filename=default.json'
+        ).then((response) => response.json())
+        if (res.success) {
+          this.onlineMusics = res.data
+        }
+      } catch (err) {
+        console.error(err)
       }
     },
 
@@ -46,7 +52,7 @@ export const useMusicStore = defineStore('musiclist', {
       this.localMusics.push(music)
     },
     removeFromLocal (music: MusicItem) {
-      this.localMusics = this.localMusics.filter(item => {
+      this.localMusics = this.localMusics.filter((item) => {
         return !(item.title === music.title && item.artist === music.artist)
       })
     }
