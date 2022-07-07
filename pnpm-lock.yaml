@@ -19,6 +19,7 @@ importers:
       '@types/react': ^18.0.14
       '@types/react-dom': ^18.0.5
       '@types/react-lazyload': ^3.2.0
+      '@types/react-transition-group': ^4.4.5
       autoprefixer: ^10.4.7
       eslint-config-prettier: ^8.5.0
       eslint-plugin-prettier: ^4.2.1
@@ -33,6 +34,7 @@ importers:
       react-redux: ^8.0.2
       react-router-dom: ^6.3.0
       react-scripts: 5.0.1
+      react-transition-group: ^4.4.2
       react-use: ^17.4.0
       redux: ^4.2.0
       redux-persist: ^6.0.0
@@ -49,6 +51,7 @@ importers:
       '@types/react': 18.0.14
       '@types/react-dom': 18.0.5
       '@types/react-lazyload': 3.2.0
+      '@types/react-transition-group': 4.4.5
       autoprefixer: 10.4.7_postcss@8.4.14
       eslint-config-prettier: 8.5.0
       eslint-plugin-prettier: 4.2.1_5ipovlnpea62s4232hvmwuqmsm
@@ -63,6 +66,7 @@ importers:
       react-redux: 8.0.2_jcbkrypqxz3emsprsw5dchskju
       react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
       react-scripts: 5.0.1_evleu75usofu245y3n7kory4xe
+      react-transition-group: 4.4.2_biqbaboplfbrettd7655fr4n2y
       react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
       redux: 4.2.0
       redux-persist: 6.0.0_redux@4.2.0
@@ -3369,6 +3373,12 @@ packages:
       '@types/react': 18.0.14
     dev: false
 
+  /@types/react-transition-group/4.4.5:
+    resolution: {integrity: sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==}
+    dependencies:
+      '@types/react': 18.0.14
+    dev: false
+
   /@types/react/18.0.14:
     resolution: {integrity: sha512-x4gGuASSiWmo0xjDLpm5mPb52syZHJx02VKbqUKdLmKtAwIh63XClGsiTI1K6DO5q7ox4xAsQrU+Gl3+gGXF9Q==}
     dependencies:
@@ -5845,6 +5855,13 @@ packages:
     resolution: {integrity: sha512-gd3ypIPfOMr9h5jIKq8E3sHOTCjeirnl0WK5ZdS1AW0Odt0b1PaWaHdJ4Qk4klv+YB9aJBS7mESXjFoDQPu6DA==}
     dependencies:
       utila: 0.4.0
+    dev: false
+
+  /dom-helpers/5.2.1:
+    resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
+    dependencies:
+      '@babel/runtime': 7.18.6
+      csstype: 3.1.0
     dev: false
 
   /dom-serializer/0.2.2:
@@ -12271,6 +12288,20 @@ packages:
       - webpack-cli
       - webpack-hot-middleware
       - webpack-plugin-serve
+    dev: false
+
+  /react-transition-group/4.4.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg==}
+    peerDependencies:
+      react: '>=16.6.0'
+      react-dom: '>=16.6.0'
+    dependencies:
+      '@babel/runtime': 7.18.6
+      dom-helpers: 5.2.1
+      loose-envify: 1.4.0
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-universal-interface/0.6.2_react@18.2.0+tslib@2.4.0:

@@ -7,7 +7,7 @@ import {
   useRef,
   useState
 } from 'react'
-import { useEvent, useUpdateEffect } from 'react-use'
+import { useEvent } from 'react-use'
 
 import './progress-bar.styles.scss'
 
@@ -36,8 +36,6 @@ const ProgressBar: FC<ProgressBarProps> = ({
 
   // state
   const [offset, setOffset] = useState(0)
-  const [btnStyle, setBtnStyle] = useState({})
-  const [progressStyle, setProgressStyle] = useState({})
 
   // handlers
   const onTouchStart = (e: MouseEvent | TouchEvent) => {
@@ -78,17 +76,6 @@ const ProgressBar: FC<ProgressBarProps> = ({
   }
 
   // hooks
-  useUpdateEffect(() => {
-    setBtnStyle({
-      transform: `translate3d(${offset}px,0,0)`
-    })
-  }, [offset])
-  useUpdateEffect(() => {
-    setProgressStyle({
-      width: `${offset}px`,
-      backgroundColor: barColor
-    })
-  }, [offset, barColor])
   useEffect(() => {
     if (!barRef.current) return
 
@@ -103,10 +90,16 @@ const ProgressBar: FC<ProgressBarProps> = ({
   return (
     <div ref={barRef} className="progress-bar" onClick={onClick}>
       <div className="bar-inner">
-        <div ref={progressRef} className="progress" style={progressStyle} />
+        <div
+          ref={progressRef}
+          className="progress"
+          style={{ width: `${offset}px`, backgroundColor: barColor }}
+        />
         <div
           className="progress-btn-wrapper"
-          style={btnStyle}
+          style={{
+            transform: `translate3d(${offset}px,0,0)`
+          }}
           onMouseDown={onTouchStart}
           onMouseMove={onTouchMove}
           onMouseUp={onTouchEnd}

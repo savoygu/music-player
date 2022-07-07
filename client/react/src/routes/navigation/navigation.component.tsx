@@ -84,7 +84,7 @@ const Navigation = () => {
           </span>
         )}
         <Switch
-          value={isGreen}
+          checked={isGreen}
           onLeverBgColor="#2f9842"
           onTextColor="#2f9842"
           onText="绿"

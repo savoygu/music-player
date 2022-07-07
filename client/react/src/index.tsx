@@ -5,10 +5,10 @@ import { HashRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 
 import { ToastProvider } from '@/components/toast'
-import store, { persistor } from './store'
-import App from './App'
+import store, { persistor } from '@/store'
+import App from '@/App'
 
-import './themes/default/index.scss'
+import '@/themes/default/index.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(

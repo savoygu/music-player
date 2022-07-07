@@ -1,5 +1,6 @@
 import React, { useState, useMemo, FC } from 'react'
 import { createPortal } from 'react-dom'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import ToastContext from './toast.context'
 import Toast from './toast.component'
@@ -43,13 +44,13 @@ const ToastProvider: FC<ToastProviderProps> = ({ children }) => {
       {children}
 
       {createPortal(
-        <div className="toasts-wrapper">
+        <TransitionGroup className="toasts-wrapper">
           {toasts.map((toast) => (
-            <Toast key={toast.id} close={() => close(toast.id)}>
-              {toast.content}
-            </Toast>
+            <CSSTransition key={toast.id} timeout={300} classNames="toast-item">
+              <Toast close={() => close(toast.id)}>{toast.content}</Toast>
+            </CSSTransition>
           ))}
-        </div>,
+        </TransitionGroup>,
         document.body
       )}
     </ToastContext.Provider>

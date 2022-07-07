@@ -117,7 +117,7 @@ const Player = () => {
           </div>
           <div className="player-control flex items-center justify-between mt-10">
             <IconPark
-              Comp={
+              component={
                 playMode === PLAY_MODE.SEQUENCE
                   ? PlayCycle
                   : playMode === PLAY_MODE.RANDOM
@@ -128,18 +128,18 @@ const Player = () => {
               onClick={changeMode}
             />
             <span className="inline-flex items-center">
-              <IconPark Comp={GoStart} onClick={prev} />
+              <IconPark component={GoStart} onClick={prev} />
               <IconPark
-                Comp={playing ? PauseOne : Play}
+                component={playing ? PauseOne : Play}
                 className="ml-5"
                 size={40}
                 onClick={togglePlay}
               />
-              <IconPark Comp={GoEnd} className="ml-5" onClick={next} />
+              <IconPark component={GoEnd} className="ml-5" onClick={next} />
             </span>
             <div className="inline-flex items-center ">
               <IconPark
-                Comp={
+                component={
                   volume === 0
                     ? VolumeMute
                     : volume < 0.3

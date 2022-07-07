@@ -4,21 +4,28 @@ import { useTimeoutFn } from 'react-use'
 import './toast.styles.scss'
 
 type ToastProps = {
-  close: () => void
   children: React.ReactNode
+  close: () => void
+  hasClose?: boolean
+  duration?: number
 }
 
-const Toast: FC<ToastProps> = ({ close, children }) => {
-  useTimeoutFn(close, 3000)
+const Toast: FC<ToastProps> = ({
+  children,
+  close,
+  hasClose = false,
+  duration = 2000
+}) => {
+  useTimeoutFn(close, duration)
 
   return (
     <div className="toast">
       <div className="toast__text">{children}</div>
-      <div>
+      {hasClose && (
         <button onClick={close} className="toast__close-btn">
           x
         </button>
-      </div>
+      )}
     </div>
   )
 }

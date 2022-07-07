@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, useEffect, useState } from 'react'
+import { FC, MouseEventHandler } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FolderDownload, Delete } from '@icon-park/react'
 import LazyLoad from 'react-lazyload'
@@ -24,6 +24,12 @@ const MusicItem: FC<MusicItemProps> = ({ currentTab, musicItem, onClick }) => {
   // selectors
   const { localMusics } = useSelector(selectMusicsReducer)
   const currentSong = useSelector(selectCurrentSong)
+  const isActive =
+    musicItem.title === currentSong?.title &&
+    musicItem.artist === currentSong?.artist
+  const inLocal = !!localMusics.find(
+    (item) => item.title === musicItem.title && item.artist === musicItem.artist
+  )
 
   // dispatch
   const dispatch = useDispatch()
@@ -31,7 +37,6 @@ const MusicItem: FC<MusicItemProps> = ({ currentTab, musicItem, onClick }) => {
     event.stopPropagation()
 
     dispatch(addToLocal(musicItem))
-
     toast.open('已添加到本地')
   }
   const _removeFromLocal: MouseEventHandler<HTMLSpanElement> = (event) => {
@@ -40,27 +45,6 @@ const MusicItem: FC<MusicItemProps> = ({ currentTab, musicItem, onClick }) => {
     dispatch(removeFromLocal(musicItem))
     toast.open('移除成功')
   }
-
-  // state
-  const [isActive, setIsActive] = useState(false)
-  const [inLocal, setInLocal] = useState(false)
-
-  // hooks
-  useEffect(() => {
-    setIsActive(
-      musicItem.title === currentSong?.title &&
-        musicItem.artist === currentSong?.artist
-    )
-  }, [currentSong, musicItem])
-
-  useEffect(() => {
-    setInLocal(
-      !!localMusics.find(
-        (item) =>
-          item.title === musicItem.title && item.artist === musicItem.artist
-      )
-    )
-  }, [localMusics, musicItem])
 
   return (
     <div

@@ -4,26 +4,23 @@ import { Icon, IIconProps } from '@icon-park/react/es/runtime'
 import './icon-park.styles.scss'
 
 type IconParkProps = {
-  Comp: Icon
+  component: Icon
   className?: string
-  onClick?: () => void
 }
 
 const IconPark: FC<IconParkProps & IIconProps> = ({
-  Comp,
+  component: Component,
   className,
-  onClick,
   ...otherProps
 }) => {
   return (
-    <Comp
+    <Component
       className={`cursor-pointer ${className}`}
       theme="outline"
       size={32}
       fill="#4b5563"
       strokeWidth={3}
       {...otherProps}
-      onClick={onClick}
     />
   )
 }

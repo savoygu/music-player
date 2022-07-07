@@ -1,9 +1,9 @@
-import { ChangeEvent, ChangeEventHandler, FC, useEffect, useState } from 'react'
+import { ChangeEvent, FC } from 'react'
 
 import './switch.styles.scss'
 
 interface SwitchProps {
-  value: boolean
+  checked: boolean
   labelText?: string
   onText?: string // 开关文本
   offText?: string
@@ -21,7 +21,7 @@ const ON_COLOR = '#6bc30d'
 const OFF_COLOR = '#fdfdfd'
 
 const Switch: FC<SwitchProps> = ({
-  value,
+  checked,
   labelText,
   onText = '开',
   offText = '关',
@@ -34,24 +34,6 @@ const Switch: FC<SwitchProps> = ({
   disabled = false,
   onChange
 }) => {
-  // state
-  const [checked, setChecked] = useState(value)
-  const [switchStyle, setSwitchStyle] = useState({})
-
-  // handlers
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setChecked(event.target.checked)
-    onChange && onChange(event)
-  }
-
-  // hooks
-  useEffect(() => {
-    setSwitchStyle({
-      color: checked ? onTextColor : offTextColor,
-      backgroundColor: checked ? onBgColor : offBgColor
-    })
-  }, [checked, onTextColor, offTextColor, onBgColor, offBgColor])
-
   return (
     <div className="switch">
       <label>
@@ -61,7 +43,7 @@ const Switch: FC<SwitchProps> = ({
           type="checkbox"
           defaultChecked={checked}
           disabled={disabled}
-          onChange={handleChange}
+          onChange={onChange}
         />
         <div
           className="switch-lever"
@@ -71,7 +53,10 @@ const Switch: FC<SwitchProps> = ({
         >
           <span
             className={checked ? 'switch-on' : 'switch-off'}
-            style={switchStyle}
+            style={{
+              color: checked ? onTextColor : offTextColor,
+              backgroundColor: checked ? onBgColor : offBgColor
+            }}
           >
             {checked ? onText : offText}
           </span>

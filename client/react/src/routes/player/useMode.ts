@@ -12,6 +12,7 @@ const useMode = () => {
   const dispatch = useDispatch()
   const _changeMode = (mode: PLAY_MODE) => dispatch(changeMode(mode))
 
+  // handlers
   const onChangeMode = () => {
     const mode = (playMode + 1) % 3
     _changeMode(mode)

@@ -1,6 +1,5 @@
-import { useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useUpdateEffect } from 'react-use'
 
 import { selectPlayerReducer } from '@/store/selectors'
 
@@ -16,7 +15,7 @@ const useCd = () => {
   const [cdClass, setCdClass] = useState('')
 
   // hooks
-  useUpdateEffect(() => {
+  useLayoutEffect(() => {
     if (!playing && cdRef.current && cdCoverRef.current) {
       syncTransform(cdRef.current, cdCoverRef.current)
     }

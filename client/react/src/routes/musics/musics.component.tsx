@@ -14,6 +14,7 @@ import { selectPlay } from '@/store/slices/player'
 import { MODE, STORAGE } from '@/utils/enums'
 
 import './musics.styles.scss'
+import { MusicItem as TMusicItem } from '@/types'
 
 const MusicList = () => {
   // selectors
@@ -24,6 +25,10 @@ const MusicList = () => {
   // dispatch
   const dispatch = useDispatch()
   const _setCurrentMode = (mode: MODE) => dispatch(setCurrentMode(mode))
+  const _setCurrentTab = (tab: STORAGE) => dispatch(setCurrentTab(tab))
+  const _selectPlay = (musicList: TMusicItem[], index: number) =>
+    dispatch(selectPlay({ sequenceList: musicList, currentIndex: index }))
+  const _loadMusics = () => dispatch(loadMusics())
 
   // state
   const [tab, setTab] = useState(currentTab)
@@ -31,18 +36,13 @@ const MusicList = () => {
 
   // handlers
   const selectItem = (index: number) => {
-    dispatch(setCurrentTab(tab))
-    dispatch(
-      selectPlay({
-        sequenceList: musicList,
-        currentIndex: index
-      })
-    )
+    _setCurrentTab(tab)
+    _selectPlay(musicList, index)
   }
 
   // hooks
   useEffectOnce(() => {
-    dispatch(loadMusics())
+    _loadMusics()
   })
 
   useEffect(() => {
