@@ -30,7 +30,6 @@ const Navigation = () => {
 
   // dispatch
   const dispatch = useDispatch()
-  const _setTheme = (theme: THEME) => dispatch(setTheme(theme))
 
   // refs
   const audioRef = useRef<AudioRef>(null)
@@ -66,9 +65,8 @@ const Navigation = () => {
 
   useEffect(() => {
     const newTheme = isGreen ? THEME.GREEN : THEME.ORANGE
-    _setTheme(newTheme)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isGreen])
+    dispatch(setTheme(newTheme))
+  }, [isGreen, dispatch])
 
   return (
     <>

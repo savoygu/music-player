@@ -65,12 +65,6 @@ const Audio: ForwardRefRenderFunction<AudioRef, AudioProps> = (
   const [isReady, setIsReady] = useState(false)
 
   // handlers
-  const pause = () => {
-    if (!playing) return
-
-    _setPlaying(false)
-  }
-
   const ready: ReactEventHandler<HTMLAudioElement> = (e) => {
     if (isReady) return
     setIsReady(true)
@@ -117,6 +111,12 @@ const Audio: ForwardRefRenderFunction<AudioRef, AudioProps> = (
     }
   }
 
+  const pause = () => {
+    if (!playing) return
+
+    _setPlaying(false)
+  }
+
   const error = () => {
     setIsReady(true)
   }
@@ -150,13 +150,21 @@ const Audio: ForwardRefRenderFunction<AudioRef, AudioProps> = (
   }
 
   // hooks
+  useEffectOnce(() => {
+    if (currentSong) {
+      const audioEl = audioRef.current!
+      audioEl.src = currentSong.url
+      audioEl.currentTime = currentTime
+      audioEl.volume = volume
+      audioEl.load()
+    }
+  })
   useUpdateEffect(() => {
     if (!isReady) return
 
     const audioEl = audioRef.current!
     playing ? audioEl.play() : audioEl.pause()
   }, [playing])
-
   useUpdateEffect(() => {
     if (!currentSong.url) return
     setIsReady(false)
@@ -165,16 +173,6 @@ const Audio: ForwardRefRenderFunction<AudioRef, AudioProps> = (
     audioEl.src = currentSong.url
     audioEl.play()
   }, [currentSong.url])
-
-  useEffectOnce(() => {
-    if (currentSong) {
-      const audioEl = audioRef.current!
-      audioEl.src = currentSong.url
-      audioEl.currentTime = currentTime
-      audioEl.volume = volume
-    }
-  })
-
   useImperativeHandle(forwardedRef, () => ({
     prev,
     next,

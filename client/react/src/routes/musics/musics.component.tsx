@@ -12,9 +12,9 @@ import {
 } from '@/store/slices/musics'
 import { selectPlay } from '@/store/slices/player'
 import { MODE, STORAGE } from '@/utils/enums'
+import { MusicItem as TMusicItem } from '@/types'
 
 import './musics.styles.scss'
-import { MusicItem as TMusicItem } from '@/types'
 
 const MusicList = () => {
   // selectors
