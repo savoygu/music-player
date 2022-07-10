@@ -41,7 +41,7 @@ export class QiniuController {
     @Body('music') music: MusicDTO
   ) {
     // 获取所有音乐
-    const musics = await this.qiniuService.getJSONFile(filename);
+    let musics = await this.qiniuService.getJSONFile(filename);
     if (
       musics.find(
         item => item.title === music.title && item.artist === music.artist
@@ -55,8 +55,12 @@ export class QiniuController {
       /\.(cda|wav|mp3|aiff?|mid|wma|ra|vqf|ape)/
     );
     const coverExt = music.cover.match(/\.(jpe?g|png|webp|bmp|gif)/);
-    const musicKey = `music/${music.title}-${music.artist}.${musicExt[1]}`;
-    const coverKey = `cover/${music.title}-${music.artist}.${coverExt[1]}`;
+    const musicKey = `music/${music.title}-${music.artist}.${
+      musicExt ? musicExt[1] : 'mp3'
+    }`;
+    const coverKey = `cover/${music.title}-${music.artist}.${
+      coverExt ? coverExt[1] : 'jpg'
+    }`;
     const [{ downloadUrl: musicUrl }, { downloadUrl: coverUrl }] =
       await Promise.all([
         this.qiniuService.uploadLink(musicKey, music.url),
@@ -71,17 +75,30 @@ export class QiniuController {
     await this.qiniuService.moveFile(filename, `backup/${newFilename}`);
 
     // 上传 filename
-    await this.qiniuService.uploadBytes(
-      filename,
-      JSON.stringify(
-        musics.concat({
-          ...music,
-          url: musicUrl,
-          cover: coverUrl,
-        })
+    const musicInfo = {
+      ...music,
+      url: musicUrl,
+      cover: coverUrl,
+    };
+    if (
+      musics.find(
+        item => item.title === music.title && item.artist === music.artist
       )
-    ),
-      await this.qiniuService.refreshUrls([filename]);
+    ) {
+      musics = musics.map(item => {
+        if (item.title === music.title && item.artist === music.artist) {
+          return {
+            ...item,
+            ...musicInfo,
+          };
+        }
+        return item;
+      });
+    } else {
+      musics = musics.concat(musicInfo);
+    }
+    await this.qiniuService.uploadBytes(filename, JSON.stringify(musics));
+    await this.qiniuService.refreshUrls([filename]);
     return '上传成功';
   }
 }
