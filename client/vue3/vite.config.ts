@@ -9,7 +9,10 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
   return {
-    base: env.NODE_ENV === 'production' && mode === 'gh-pages' ? '/music-player/' : '/',
+    base: env.NODE_ENV === 'production' ? '/music-player/' : '/',
+    build: {
+      outDir: 'build'
+    },
     css: {
       preprocessorOptions: {
         scss: {

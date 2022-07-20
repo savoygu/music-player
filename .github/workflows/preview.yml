@@ -32,8 +32,7 @@ jobs:
         run: |
           pnpm install
           cd ${{secrets.CLIENT}}
-          # VITE_APP_BASE_URL=${{secrets.BASE_URL}} npm run build:gh-pages
-          REACT_APP_BASE_URL=${{secrets.BASE_URL}} npm run build
+          ${{secrets.BASE_URL_KEY}}=${{secrets.BASE_URL_VALUE}} npm run build
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
