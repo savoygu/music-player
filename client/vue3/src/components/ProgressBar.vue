@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<{
 
 // eslint-disable-next-line func-call-spacing
 const emit = defineEmits<{
-  (e: 'progress-changing', progress: number): void,
+  (e: 'progress-changing', progress: number): void
   (e: 'progress-changed', progress: number): void
 }>()
 
@@ -38,14 +38,23 @@ const btnStyle = computed(() => {
 })
 
 // watch
-watch(() => props.progress, (newProgress) => {
-  const barWidth = barRef.value?.clientWidth! - (props.hasBtn ? progressBarWidth : 0)
-  offset.value = barWidth * newProgress
-})
+watch(
+  () => props.progress,
+  (newProgress) => {
+    if (!barRef.value) return
+
+    const barWidth =
+      barRef.value.clientWidth - (props.hasBtn ? progressBarWidth : 0)
+    offset.value = barWidth * newProgress
+  }
+)
 
 // lifecycle
 onMounted(() => {
-  const barWidth = barRef.value?.clientWidth! - (props.hasBtn ? progressBarWidth : 0)
+  if (!barRef.value) return
+
+  const barWidth =
+    barRef.value.clientWidth - (props.hasBtn ? progressBarWidth : 0)
   offset.value = barWidth * props.progress
 })
 
@@ -56,34 +65,42 @@ const touch = {
 }
 let touching = false
 const onTouchStart = (e: TouchEvent | MouseEvent) => {
+  if (!progressRef.value) return
+
   touching = true
   touch.x1 = e instanceof TouchEvent ? e.touches[0].pageX : e.pageX // 鼠标开始位置
-  touch.beginWidth = progressRef.value?.clientWidth! // 进度条当前进度
+  touch.beginWidth = progressRef.value.clientWidth // 进度条当前进度
 }
 const onTouchMove = (e: TouchEvent | MouseEvent) => {
-  if (!touching) return
+  if (!touching || !barRef.value) return
 
-  const delta = (e instanceof TouchEvent ? e.touches[0].pageX : e.pageX) - touch.x1 // 鼠标移动距离
+  const delta =
+    (e instanceof TouchEvent ? e.touches[0].pageX : e.pageX) - touch.x1 // 鼠标移动距离
   const endWidth = touch.beginWidth + delta // 进度条最终进度
-  const barWidth = barRef.value?.clientWidth! - (props.hasBtn ? progressBarWidth : 0)
+  const barWidth =
+    barRef.value.clientWidth - (props.hasBtn ? progressBarWidth : 0)
   const progress = Math.min(1, Math.max(endWidth / barWidth, 0))
   offset.value = barWidth * progress
 
   emit('progress-changing', progress)
 }
-const onTouchEnd = (e: Event) => {
-  if (!touching) return
+const onTouchEnd = () => {
+  if (!touching || !barRef.value || !progressRef.value) return
   touching = false
 
-  const barWidth = barRef.value?.clientWidth! - (props.hasBtn ? progressBarWidth : 0)
-  const progress = progressRef.value?.clientWidth! / barWidth
+  const barWidth =
+    barRef.value.clientWidth - (props.hasBtn ? progressBarWidth : 0)
+  const progress = progressRef.value.clientWidth / barWidth
 
   emit('progress-changed', progress)
 }
 const onClick = (e: MouseEvent) => {
-  const rect = barRef.value?.getBoundingClientRect()!
+  if (!barRef.value) return
+
+  const rect = barRef.value.getBoundingClientRect()
   const offsetWidth = e.pageX - rect.left
-  const barWidth = barRef.value?.clientWidth! - (props.hasBtn ? progressBarWidth : 0)
+  const barWidth =
+    barRef.value.clientWidth - (props.hasBtn ? progressBarWidth : 0)
   const progress = Math.min(1, Math.max(offsetWidth / barWidth, 0))
 
   emit('progress-changed', progress)
@@ -92,7 +109,6 @@ const onClick = (e: MouseEvent) => {
 // events
 useEventListener(document, 'mouseup', onTouchEnd)
 useEventListener(document, 'touchend', onTouchEnd)
-
 </script>
 
 <template>

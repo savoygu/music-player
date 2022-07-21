@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<{
   labelText: ''
 })
 
-const emit = defineEmits<{(e: 'update:modelValue', modelValue: boolean): void}>()
+const emit = defineEmits<{(e: 'update:modelValue', modelValue: boolean): void }>()
 
 const checked = ref(props.modelValue)
 

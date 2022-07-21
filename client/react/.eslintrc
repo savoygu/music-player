@@ -1,13 +1,6 @@
 {
-  "plugins": [
-    "prettier"
-  ],
   "extends": [
-    "react-app",
-    "react-app/jest",
-    "prettier"
-  ],
-  "rules": {
-    "prettier/prettier": "error"
-  }
+    "@savoygu/eslint-config-react",
+    "@savoygu/eslint-config-prettier"
+  ]
 }

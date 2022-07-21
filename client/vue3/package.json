@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint . --ext .ts,.vue --fix"
   },
   "dependencies": {
     "@icon-park/vue-next": "^1.4.0",
@@ -18,18 +19,12 @@
     "vue3-lazy": "1.0.0-alpha.1"
   },
   "devDependencies": {
+    "@savoygu/eslint-config-vue": "0.1.1",
     "@types/node": "^17.0.36",
-    "@typescript-eslint/eslint-plugin": "^5.27.0",
-    "@typescript-eslint/parser": "^5.27.0",
     "@vitejs/plugin-vue": "^2.3.3",
     "@vue/eslint-config-typescript": "^10.0.0",
     "autoprefixer": "^10.4.7",
-    "eslint": "^8.0.1",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-n": "^15.0.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-vue": "^9.1.0",
+    "eslint": "^8.20.0",
     "modern-normalize": "^1.1.0",
     "postcss": "^8.4.14",
     "postcss-html": "^1.4.1",
