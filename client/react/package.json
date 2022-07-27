@@ -1,5 +1,5 @@
 {
-  "name": "react-app",
+  "name": "music-player-react",
   "version": "0.0.0",
   "private": true,
   "prettier": "@savoygu/prettier-config",
@@ -44,8 +44,8 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "format": "prettier 'src/**/*.{ts,tsx}' --write",
-    "lint": "eslint . --ext .ts,tsx --fix"
+    "format": "prettier 'src/**/*.{ts,tsx,js}' --write",
+    "lint": "eslint . --ext ts,tsx --fix"
   },
   "homepage": "https://savoygu.github.io/music-player",
   "browserslist": {
