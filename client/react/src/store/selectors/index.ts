@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit'
 
-import { STORAGE } from '@/utils/enums'
 import { RootState } from '@/types'
+import { STORAGE } from '@/utils/enums'
 
 export const selectPlayerReducer = (state: RootState) => state.playerState
 export const selectCurrentSong = createSelector(

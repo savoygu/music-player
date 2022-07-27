@@ -54,13 +54,13 @@ const ProgressBar: FC<ProgressBarProps> = ({
 
     onProgressChanging(progress)
   }
-  const onTouchEnd = (e: MouseEvent | TouchEvent) => {
+  const onTouchEnd = () => {
     if (!touching) return
     touching = false
 
     const barWidth =
       barRef.current!.clientWidth - (hasBtn ? progressBarWidth : 0)
-    const progress = progressRef.current?.clientWidth! / barWidth
+    const progress = (progressRef.current?.clientWidth ?? 0) / barWidth
     onProgressChanged(progress)
   }
   const onClick: MouseEventHandler<HTMLDivElement> = (e) => {
@@ -88,7 +88,12 @@ const ProgressBar: FC<ProgressBarProps> = ({
   useEvent('mouseup', onTouchEnd)
 
   return (
-    <div ref={barRef} className="progress-bar" onClick={onClick}>
+    <div
+      ref={barRef}
+      className="progress-bar"
+      onClick={onClick}
+      aria-hidden="true"
+    >
       <div className="bar-inner">
         <div
           ref={progressRef}
@@ -107,6 +112,7 @@ const ProgressBar: FC<ProgressBarProps> = ({
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
           onClick={(e) => e.stopPropagation()}
+          aria-hidden="true"
         >
           <div className="progress-btn" style={{ backgroundColor: barColor }} />
         </div>

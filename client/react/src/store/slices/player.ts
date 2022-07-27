@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { shuffle } from '@/utils'
 import musicList from '@/store/musiclist.json'
 import { MusicItem, PlayerState } from '@/types'
+import { shuffle } from '@/utils'
 import { PLAY_MODE } from '@/utils/enums'
 
 export const initialState: PlayerState = {

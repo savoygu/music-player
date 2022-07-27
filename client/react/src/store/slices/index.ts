@@ -1,7 +1,7 @@
 // import { combineReducers } from '@reduxjs/toolkit'
 
-import playerReducer from '@/store/slices/player'
 import musicsReducer from '@/store/slices/musics'
+import playerReducer from '@/store/slices/player'
 import themeReducer from '@/store/slices/theme'
 // import { BaseRootState } from '@/types'
 

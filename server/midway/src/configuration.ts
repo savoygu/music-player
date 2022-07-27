@@ -35,6 +35,7 @@ export class ContainerLifeCycle {
   @App()
   app: koa.Application;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async onReady(applicationContext: IMidwayContainer) {
     // add middleware
     this.app.useMiddleware([ReportMiddleware, FormatMiddleware]);

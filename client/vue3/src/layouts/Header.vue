@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import Switch from '@/components/Switch.vue'
 import { useStore } from '@/store'
 import { useMusicStore } from '@/store/musiclist'
 import { usePlayerStore } from '@/store/player'
-import Switch from '@/components/Switch.vue'
-import { STORAGE, THEME } from '@/utils/enums'
 import { setTheme } from '@/themes'
+import { STORAGE, THEME } from '@/utils/enums'
 
 // store
 const store = useStore()

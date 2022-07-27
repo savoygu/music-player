@@ -1,11 +1,6 @@
 module.exports = {
-  extends: [
-    '@savoygu/eslint-config-vue',
-    '@savoygu/eslint-config-vue/typescript'
-  ],
+  extends: ['@savoygu/eslint-config-vue'],
   rules: {
-    'vue/multi-word-component-names': 'off',
-
     'no-used-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error']
   }

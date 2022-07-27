@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
-import { PLAY_MODE } from '@/utils/enums'
+import musicList from './musiclist.json'
 import { MusicItem } from '@/types'
 import { shuffle } from '@/utils'
-import musicList from './musiclist.json'
+import { PLAY_MODE } from '@/utils/enums'
 
 interface PlayerState {
   sequenceList: MusicItem[]

@@ -5,8 +5,8 @@ import {
   loadMusicsFailure,
   loadMusicsSuccess
 } from '@/store/slices/musics'
-import { BASE_URL } from '@/utils/constants'
 import { Response } from '@/types'
+import { BASE_URL } from '@/utils/constants'
 
 const getMusics = async (): Promise<Response> => {
   return fetch(BASE_URL + '/qiniu/get_musics?filename=default.json').then(

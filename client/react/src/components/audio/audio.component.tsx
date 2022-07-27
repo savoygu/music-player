@@ -9,6 +9,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffectOnce, useUpdateEffect } from 'react-use'
 
+import './audio.styles.scss'
+
 import {
   selectCurrentSong,
   selectPlayerReducer,
@@ -22,8 +24,6 @@ import {
   setVolume
 } from '@/store/slices/player'
 import { PLAY_MODE } from '@/utils/enums'
-
-import './audio.styles.scss'
 
 type AudioProps = {}
 
@@ -181,14 +181,17 @@ const Audio: ForwardRefRenderFunction<AudioRef, AudioProps> = (
   }))
 
   return (
-    <audio
-      ref={audioRef}
-      onPause={pause}
-      onCanPlay={ready}
-      onError={error}
-      onTimeUpdate={updateTime}
-      onEnded={end}
-    />
+    <audio>
+      <track
+        ref={audioRef}
+        kind="captions"
+        onPause={pause}
+        onCanPlay={ready}
+        onError={error}
+        onTimeUpdate={updateTime}
+        onEnded={end}
+      ></track>
+    </audio>
   )
 }
 

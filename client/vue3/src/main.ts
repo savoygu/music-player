@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
-import App from './App.vue'
 import lazyPlugin from 'vue3-lazy'
+import App from './App.vue'
 
+import loading from './assets/default.png'
 import router from './router'
 import store from './store'
-import loading from './assets/default.png'
 
 import './themes/default/index.scss'
 

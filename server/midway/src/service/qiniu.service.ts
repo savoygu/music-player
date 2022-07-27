@@ -114,7 +114,7 @@ export class QiniuService {
         {
           force: true,
         },
-        (respErr, respBody, respInfo) => {
+        (respErr, respBody) => {
           if (respErr) {
             reject(respErr);
           } else {
@@ -131,7 +131,7 @@ export class QiniuService {
       this.bucketManager.delete(
         this.qiniuConfig.bucket,
         filename,
-        (respErr, respBody, respInfo) => {
+        (respErr, respBody) => {
           if (respErr) {
             reject(respErr);
           } else {
@@ -148,7 +148,7 @@ export class QiniuService {
       urls.map(url => this.publicDownloadUrl(url))
     );
     return new Promise((resolve, reject) => {
-      this.cdnManager.refreshUrls(urlsToRefresh, (err, respBody, respInfo) => {
+      this.cdnManager.refreshUrls(urlsToRefresh, (err, respBody) => {
         if (err) {
           reject(err);
         } else {
@@ -170,7 +170,7 @@ export class QiniuService {
         filename,
         stream,
         putExtra,
-        (respErr, respBody, respInfo) => {
+        (respErr, respBody) => {
           if (respErr) {
             reject(respErr);
           } else {

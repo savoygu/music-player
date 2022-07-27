@@ -1,3 +1,7 @@
+const getRandom = (max: number): number => {
+  return Math.floor(Math.random() * (max + 1))
+}
+
 export const shuffle = <T>(source: T[]) => {
   const arr = source.slice()
   for (let i = 0; i < arr.length; i++) {
@@ -5,10 +9,6 @@ export const shuffle = <T>(source: T[]) => {
     ;[arr[i], arr[j]] = [arr[j], arr[i]]
   }
   return arr
-}
-
-function getRandom (max: number): number {
-  return Math.floor(Math.random() * (max + 1))
 }
 
 export const formatTime = (interval = 0) => {

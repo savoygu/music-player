@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, toRefs } from 'vue'
 import { FolderDownload, Delete } from '@icon-park/vue-next'
+import { computed, toRefs } from 'vue'
+import createToast from './toast'
 import { useMusicStore } from '@/store/musiclist'
 import { usePlayerStore } from '@/store/player'
 import { MusicItem } from '@/types'
 import { STORAGE } from '@/utils/enums'
-import createToast from './toast'
 
 const props = defineProps<{
   musicItem: MusicItem

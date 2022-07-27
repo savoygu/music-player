@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
+import musicList from './musiclist.json'
 import { MusicItem } from '@/types'
 import { BASE_URL } from '@/utils/constants'
 import { MODE, STORAGE } from '@/utils/enums'
-import musicList from './musiclist.json'
 
 interface MusicState {
   currentTab: STORAGE

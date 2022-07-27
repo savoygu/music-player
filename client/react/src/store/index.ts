@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import createSagaMiddleware from 'redux-saga'
 import { persistStore, persistReducer, PersistConfig } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import createSagaMiddleware from 'redux-saga'
 
 import rootSaga from '@/store/sagas'
 import { themeReducer, musicsReducer, playerReducer } from '@/store/slices'

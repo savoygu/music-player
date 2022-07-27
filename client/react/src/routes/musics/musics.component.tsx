@@ -1,8 +1,9 @@
+import { ViewGridCard, ViewGridList } from '@icon-park/react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffectOnce } from 'react-use'
-import { ViewGridCard, ViewGridList } from '@icon-park/react'
 
+import './musics.styles.scss'
 import MusicItem from '@/components/music-item/music-item.component'
 import { selectMusicList, selectMusicsReducer } from '@/store/selectors'
 import {
@@ -11,10 +12,8 @@ import {
   setCurrentTab
 } from '@/store/slices/musics'
 import { selectPlay } from '@/store/slices/player'
-import { MODE, STORAGE } from '@/utils/enums'
 import { MusicItem as TMusicItem } from '@/types'
-
-import './musics.styles.scss'
+import { MODE, STORAGE } from '@/utils/enums'
 
 const MusicList = () => {
   // selectors
@@ -56,12 +55,14 @@ const MusicList = () => {
           <span
             className={tab === STORAGE.LOCALE ? 'is-active' : ''}
             onClick={() => setTab(STORAGE.LOCALE)}
+            aria-hidden="true"
           >
             本地
           </span>
           <span
             className={`ml-2.5 ${tab === STORAGE.ONLINE ? 'is-active' : ''}`}
             onClick={() => setTab(STORAGE.ONLINE)}
+            aria-hidden="true"
           >
             在线
           </span>

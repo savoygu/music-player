@@ -1,11 +1,13 @@
 import { ChangeEventHandler, useEffect, useRef, useState } from 'react'
-import { Link, Outlet } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, Outlet } from 'react-router-dom'
 import { useEffectOnce } from 'react-use'
 
-import Switch from '@/components/switch/switch.component'
+import './navigation.styles.scss'
+import Logo from '@/assets/logo.png'
 import Audio, { AudioRef } from '@/components/audio/audio.component'
 import Footer from '@/components/footer/footer.component'
+import Switch from '@/components/switch/switch.component'
 import {
   selectCurrentSong,
   selectMusicsReducer,
@@ -14,11 +16,8 @@ import {
   selectTheme
 } from '@/store/selectors'
 import { setTheme } from '@/store/slices/theme'
-import { STORAGE, THEME } from '@/utils/enums'
 import emitter from '@/utils/emitter'
-import Logo from '@/assets/logo.png'
-
-import './navigation.styles.scss'
+import { STORAGE, THEME } from '@/utils/enums'
 
 const Navigation = () => {
   // selectors

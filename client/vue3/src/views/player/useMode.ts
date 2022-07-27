@@ -1,7 +1,7 @@
-import { computed } from 'vue'
 import { PlayCycle, PlayOnce, ShuffleOne } from '@icon-park/vue-next'
-import { PLAY_MODE } from '@/utils/enums'
+import { computed } from 'vue'
 import { usePlayerStore } from '@/store/player'
+import { PLAY_MODE } from '@/utils/enums'
 
 export default function useMode () {
   const playerStore = usePlayerStore()

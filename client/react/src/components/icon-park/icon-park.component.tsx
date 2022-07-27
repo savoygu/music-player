@@ -1,5 +1,5 @@
-import { FC } from 'react'
 import { Icon, IIconProps } from '@icon-park/react/es/runtime'
+import { FC } from 'react'
 
 import './icon-park.styles.scss'
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { usePlayerStore } from '@/store/player'
-import { PLAY_MODE } from '@/utils/enums'
 import emitter from '@/utils/emitter'
+import { PLAY_MODE } from '@/utils/enums'
 
 // store
 const playerStore = usePlayerStore()

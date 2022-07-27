@@ -16,6 +16,11 @@ export default function createToast ({
   duration = 2000,
   appendTo = document.body
 }: ToastProps) {
+  const clear = () => {
+    toastInstance.unmount()
+    appendTo.removeChild(mountNode)
+  }
+
   if (timer) {
     clearTimeout(timer)
     clear()
@@ -34,9 +39,4 @@ export default function createToast ({
     clear()
     timer = undefined
   }, duration)
-
-  function clear () {
-    toastInstance.unmount()
-    appendTo.removeChild(mountNode)
-  }
 }

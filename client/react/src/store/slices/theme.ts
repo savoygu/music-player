@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { setTheme as updateTheme } from '@/themes'
-import { THEME } from '@/utils/enums'
 import { ThemeState } from '@/types'
+import { THEME } from '@/utils/enums'
 
 export const initialState: ThemeState = {
   theme: THEME.GREEN

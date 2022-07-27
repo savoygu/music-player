@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import musicList from '@/store/musiclist.json'
-import { MODE, STORAGE } from '@/utils/enums'
 import { MusicItem, MusicsState } from '@/types'
+import { MODE, STORAGE } from '@/utils/enums'
 
 export const initialState: MusicsState = {
   currentTab: STORAGE.LOCALE,

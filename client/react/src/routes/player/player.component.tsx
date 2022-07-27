@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import {
   GoStart,
   GoEnd,
@@ -13,9 +10,15 @@ import {
   ShuffleOne,
   PlayOnce
 } from '@icon-park/react'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import ProgressBar from '@/components/progress-bar/progress-bar.component'
+import './player.styles.scss'
+import useCd from './useCd'
+import useMode from './useMode'
 import IconPark from '@/components/icon-park/icon-park.component'
+import ProgressBar from '@/components/progress-bar/progress-bar.component'
 import { selectCurrentSong, selectPlayerReducer } from '@/store/selectors'
 import {
   setCurrentTime,
@@ -26,10 +29,6 @@ import {
 import { formatTime } from '@/utils'
 import emitter from '@/utils/emitter'
 import { PLAY_MODE } from '@/utils/enums'
-import useMode from './useMode'
-import useCd from './useCd'
-
-import './player.styles.scss'
 
 const Player = () => {
   // selectors

@@ -2,8 +2,8 @@ import React, { useState, useMemo, FC } from 'react'
 import { createPortal } from 'react-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
-import ToastContext from './toast.context'
 import Toast from './toast.component'
+import ToastContext from './toast.context'
 
 // Create a random ID
 function generateUUID(): string {

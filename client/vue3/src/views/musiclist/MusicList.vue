@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
 import { ViewGridList, ViewGridCard } from '@icon-park/vue-next'
+import { computed, onMounted, ref } from 'vue'
 import MusicItem from '@/components/MusicItem.vue'
 import { useMusicStore } from '@/store/musiclist'
 import { usePlayerStore } from '@/store/player'
-import { STORAGE, MODE } from '@/utils/enums'
 import { MusicItem as IMusicItem } from '@/types'
+import { STORAGE, MODE } from '@/utils/enums'
 
 // store
 const playerStore = usePlayerStore()

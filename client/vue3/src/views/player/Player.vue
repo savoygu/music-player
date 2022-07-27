@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { VolumeMute, VolumeSmall, VolumeNotice, PauseOne, Play, GoStart, GoEnd } from '@icon-park/vue-next'
+import { computed } from 'vue'
+import useCd from './useCd'
+import useMode from './useMode'
 import ProgressBar from '@/components/ProgressBar.vue'
 import { usePlayerStore } from '@/store/player'
 import { formatTime } from '@/utils'
 import emitter from '@/utils/emitter'
-import useCd from './useCd'
-import useMode from './useMode'
 
 // store
 const playerStore = usePlayerStore()

@@ -1,15 +1,15 @@
-import { FC, MouseEventHandler } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { FolderDownload, Delete } from '@icon-park/react'
+import { FC, MouseEventHandler } from 'react'
 import LazyLoad from 'react-lazyload'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { useToast } from '../toast'
+import './music-item.styles.scss'
 
 import { selectCurrentSong, selectMusicsReducer } from '@/store/selectors'
 import { addToLocal, removeFromLocal } from '@/store/slices/musics'
-import { STORAGE } from '@/utils/enums'
 import { MusicItem as TMusicItem } from '@/types'
-
-import './music-item.styles.scss'
-import { useToast } from '../toast'
+import { STORAGE } from '@/utils/enums'
 
 type MusicItemProps = {
   musicItem: TMusicItem
@@ -50,6 +50,7 @@ const MusicItem: FC<MusicItemProps> = ({ currentTab, musicItem, onClick }) => {
     <div
       className={`music-item ${isActive ? 'is-active' : ''}`}
       onClick={onClick}
+      aria-hidden="true"
     >
       <div className="music-item-inner">
         <LazyLoad>

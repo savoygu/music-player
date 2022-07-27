@@ -1,3 +1,7 @@
+const getRandom = (max: number): number => {
+  return Math.floor(Math.random() * (max + 1))
+}
+
 export const shuffle = <T>(source: T[]) => {
   const arr = source.slice()
   for (let i = 0; i < arr.length; i++) {
@@ -7,11 +11,7 @@ export const shuffle = <T>(source: T[]) => {
   return arr
 }
 
-function getRandom(max: number): number {
-  return Math.floor(Math.random() * (max + 1))
-}
-
-export const formatTime = (interval: number = 0) => {
+export const formatTime = (interval = 0) => {
   interval = interval | 0
   const minute = (((interval / 60) | 0) + '').padStart(2, '0')
   const second = ((interval % 60) + '').padStart(2, '0')
