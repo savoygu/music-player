@@ -58,6 +58,14 @@ npm run dev
 - [tailwindcss](https://tailwindcss.com/)（工具优先的 CSS 框架）
 - [@icon-park/vue-next](https://postcss.org/)（基于 Vue3.x 的 IconPark 图标库插件）
 
+基于 Vue.js 3.x + TSX 来开发
+
+- [client/vue3-tsx](./client/vue3-tsx)
+
+基于 React 18.x 版本来开发
+
+- [client/react](./client/react)
+
 #### 服务端
 
 基于 Node.js 框架 Midwayjs 来构建服务
@@ -69,3 +77,14 @@ npm run dev
 服务器部署在 [Heroku](https://www.heroku.com/home)
 
 图片、音频存储在 [七牛云](https://portal.qiniu.com/kodo/bucket)
+
+### 后续计划
+
+- [x] Monorepo（支持更多客户端/服务器共存）
+- [x] 加入 前端框架
+  - [x] Vue3
+  - [x] Vue3 + TSX
+  - [x] React
+- [ ] 加入 Node.js 框架
+  - [x]  Midway.js
+  - [ ]  NestJS
