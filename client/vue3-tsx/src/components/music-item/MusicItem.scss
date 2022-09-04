@@ -1,0 +1,29 @@
+.music-item {
+  @apply h-16 mb-2.5 cursor-pointer ;
+
+  .music-inner {
+    @apply flex items-center h-full p-3 bg-white rounded shadow-md;
+
+    & .i-icon {
+      path {
+        stroke: var(--theme-default);
+      }
+    }
+  }
+
+  &.is-active {
+    .music-inner {
+      background-color: var(--theme-default);
+
+      span {
+        @apply text-gray-50;
+      }
+
+      & .i-icon {
+        path {
+          stroke: #f9fafb;
+        }
+      }
+    }
+  }
+}

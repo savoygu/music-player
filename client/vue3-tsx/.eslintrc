@@ -1,0 +1,10 @@
+{
+  "extends": ["@savoygu/eslint-config-vue"],
+  "rules": {
+    "no-used-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "indent": "off",
+    "@typescript-eslint/indent": ["error", 2],
+    "vue/one-component-per-file": "off"
+  }
+}

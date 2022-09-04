@@ -1,0 +1,37 @@
+{
+  "name": "music-player-vue3-tsx",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@icon-park/vue-next": "^1.4.2",
+    "@vueuse/core": "^8.9.4",
+    "add": "^2.0.6",
+    "mitt": "^3.0.0",
+    "pinia": "^2.0.21",
+    "pinia-plugin-persist": "^1.0.0",
+    "vue": "^3.2.37",
+    "vue-router": "4.1.5",
+    "vue3-lazy": "1.0.0-alpha.1"
+  },
+  "devDependencies": {
+    "@savoygu/eslint-config": "^0.3.5",
+    "@savoygu/eslint-config-vue": "^0.3.5",
+    "@vitejs/plugin-vue": "^3.0.3",
+    "@vitejs/plugin-vue-jsx": "^2.0.1",
+    "eslint": "^8.23.0",
+    "modern-normalize": "^1.1.0",
+    "postcss": "^8.4.16",
+    "sass-bem-next": "^3.1.1",
+    "stylelint": "^14.11.0",
+    "stylelint-config-idiomatic-order": "^8.1.0",
+    "stylelint-config-standard-scss": "^4.0.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.7",
+    "vue-tsc": "^0.39.5"
+  }
+}
