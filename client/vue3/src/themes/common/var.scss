@@ -1,9 +1,0 @@
-:root {
-  --theme-green: #2f9842;
-  --theme-orange: #ea6248;
-  --theme-default: var(--theme-green);
-}
-
-[data-theme="orange"] {
-  --theme-default: var(--theme-orange);
-}
