@@ -4,7 +4,7 @@
   "description": "A Music Player",
   "private": true,
   "scripts": {
-    "dev:client": "pnpm --filter music-player-vue3-tsx dev",
+    "dev:client": "pnpm --filter music-player-vue3 dev",
     "dev:server": "pnpm --filter music-player-midway dev",
     "dev": "npm-run-all -p dev:*",
     "start": "npm start --prefix server/midway",
