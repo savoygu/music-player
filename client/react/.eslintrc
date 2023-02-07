@@ -1,6 +1,6 @@
 {
   "extends": [
-    "@savoygu/eslint-config-react",
+    "@savoygu/eslint-config-react/official",
     "@savoygu/eslint-config-prettier"
   ]
 }

@@ -181,16 +181,15 @@ const Audio: ForwardRefRenderFunction<AudioRef, AudioProps> = (
   }))
 
   return (
-    <audio>
-      <track
-        ref={audioRef}
-        kind="captions"
-        onPause={pause}
-        onCanPlay={ready}
-        onError={error}
-        onTimeUpdate={updateTime}
-        onEnded={end}
-      ></track>
+    <audio
+      ref={audioRef}
+      onPause={pause}
+      onCanPlay={ready}
+      onTimeUpdate={updateTime}
+      onEnded={end}
+      onError={error}
+    >
+      <track kind="captions"></track>
     </audio>
   )
 }
