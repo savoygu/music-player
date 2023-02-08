@@ -1,5 +1,6 @@
 import { computed, defineComponent, ref, watch } from 'vue'
 import './Header.scss'
+import logo from '@/assets/logo.png'
 import Switch from '@/components/switch/Switch'
 import { useStore } from '@/store'
 import { useMusicStore } from '@/store/musiclist'
@@ -41,7 +42,7 @@ export default defineComponent({
           class="flex items-center"
         >
           <img
-            src="/src/assets/logo.png"
+            src={logo}
             alt="Logo"
             width="32"
           />
