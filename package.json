@@ -8,8 +8,8 @@
     "dev:server": "pnpm --filter music-player-midway dev",
     "dev": "npm-run-all -p dev:*",
     "start": "npm start --prefix server/midway",
-    "heroku-prebuild": "npm install --prefix server/midway",
-    "heroku-postbuild": "npm run build --prefix server/midway",
+    "prestart": "npm install --prefix server/midway",
+    "poststart": "npm run build --prefix server/midway",
     "lint": "pnpm -r lint"
   },
   "keywords": [],
