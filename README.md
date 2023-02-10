@@ -26,7 +26,7 @@ npm run dev
 
 客户端地址：
 
-  - http://localhost:3000
+  - http://localhost:5173
 
 服务器地址：
 
@@ -38,6 +38,8 @@ npm run dev
 
 - 音乐播放
 - 音乐列表（本地/在线模式切换）
+- 音乐展示（列表/卡片两种形式）
+- 主题切换（绿/橙）
 
 #### 服务器
 
@@ -74,7 +76,7 @@ npm run dev
 
 客户端部署在 [Github](https://app.netlify.com/)
 
-服务器部署在 [Heroku](https://www.heroku.com/home)
+服务器部署在 [Render](https://dashboard.render.com/)
 
 图片、音频存储在 [七牛云](https://portal.qiniu.com/kodo/bucket)
 
