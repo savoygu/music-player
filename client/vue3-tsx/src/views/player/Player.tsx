@@ -1,5 +1,12 @@
-
-import { VolumeMute, VolumeSmall, VolumeNotice, PauseOne, Play, GoStart, GoEnd } from '@icon-park/vue-next'
+import {
+  VolumeMute,
+  VolumeSmall,
+  VolumeNotice,
+  PauseOne,
+  Play,
+  GoStart,
+  GoEnd
+} from '@icon-park/vue-next'
 import { computed, defineComponent } from 'vue'
 import './Player.scss'
 import useCd from './useCd'
@@ -32,7 +39,11 @@ export default defineComponent({
       return currentTime.value / duration
     })
     const Volume = computed(() => {
-      return volume.value === 0 ? VolumeMute : volume.value < 0.3 ? VolumeSmall : VolumeNotice
+      return volume.value === 0
+        ? VolumeMute
+        : volume.value < 0.3
+          ? VolumeSmall
+          : VolumeNotice
     })
 
     // methods
@@ -54,7 +65,9 @@ export default defineComponent({
       playerStore.setCurrentTime(currentTime)
       emitter.emit('changeTime', currentTime)
 
-      if (!playing.value) { playerStore.setPlaying(true) }
+      if (!playing.value) {
+        playerStore.setPlaying(true)
+      }
     }
 
     const onVolumeChange = (volume: number) => {
@@ -65,25 +78,21 @@ export default defineComponent({
     return () => (
       <div class="mt-8 sm:mt-28">
         <h1 class="player-title">
-          <router-link to="/musics">
-            我的私人音乐坊 &gt;
-          </router-link>
+          <router-link to="/musics">我的私人音乐坊 &gt;</router-link>
         </h1>
-        <div
-          class="flex items-center mt-6 flex-col-reverse sm:flex-row"
-        >
+        <div class="flex items-center mt-6 flex-col-reverse sm:flex-row">
           <div class="flex-1 w-full">
             <div class="flex items-center h-9 mt-6 justify-center sm:mt-0 sm:justify-start">
               <span class="text-xl text-gray-800 text">
-                { currentSong.value?.title }
+                {currentSong.value?.title}
               </span>
               <span class="text-sm text-gray-600 ml-1">
-                <i class="mx-1.5.5.5.5.5">-</i> { currentSong.value?.artist }
+                <i class="mx-1.5.5.5.5.5">-</i> {currentSong.value?.artist}
               </span>
             </div>
             <div class="flex items-center mt-8">
               <span class="music-time mr-1.5">
-                { formatTime(currentTime.value) }
+                {formatTime(currentTime.value)}
               </span>
               <ProgressBar
                 class="flex-1"
@@ -92,7 +101,7 @@ export default defineComponent({
                 onProgressChanged={onProgressChanged}
               />
               <span class="music-time ml-1.5">
-                { formatTime(currentSong.value?.duration) }
+                {formatTime(currentSong.value?.duration)}
               </span>
             </div>
             <div class="player-control flex items-center justify-between mt-10">
@@ -131,11 +140,7 @@ export default defineComponent({
                 />
               </span>
               <div class="inline-flex items-center ">
-                <Volume.value
-                  theme="outline"
-                  size="16"
-                  fill="#4b5563"
-                />
+                <Volume.value theme="outline" size="16" fill="#4b5563" />
                 <div class="w-16 ml-1.5">
                   <ProgressBar
                     progress={volume.value}
@@ -147,13 +152,10 @@ export default defineComponent({
             </div>
           </div>
           <div class="w-[180px] h-[180px] sm:ml-5">
-            <div
-              v-show="currentSong"
-              ref={cdRef}
-            >
+            <div v-show="currentSong" ref={cdRef}>
               <img
                 ref={cdCoverRef}
-                class={'w-full h-full rounded-full ' + cdClass}
+                class={'w-full h-full rounded-full ' + cdClass.value}
                 src={currentSong.value?.cover}
                 alt={currentSong.value?.title}
               />
