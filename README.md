@@ -36,7 +36,7 @@ npm run dev
 
 #### 客户端
 
-- 音乐播放
+- 音乐播放（上一曲/下一曲/暂停/播放/播放模式/音量/快进）
 - 音乐列表（本地/在线模式切换）
 - 音乐展示（列表/卡片两种形式）
 - 主题切换（绿/橙）
@@ -50,7 +50,7 @@ npm run dev
 
 #### 客户端
 
-基于 Vue.js 3.x 版本来开发
+基于 Vue.js 3.x 版本来开发：[vue3 分支](https://github.com/savoygu/music-player/tree/vue3)
 
 - [vue.js](https://v3.cn.vuejs.org/)（渐进式 JavaScript 框架）
 - [vue-router](https://router.vuejs.org/zh/)（Vue.js 的官方路由）
@@ -60,13 +60,9 @@ npm run dev
 - [tailwindcss](https://tailwindcss.com/)（工具优先的 CSS 框架）
 - [@icon-park/vue-next](https://postcss.org/)（基于 Vue3.x 的 IconPark 图标库插件）
 
-基于 Vue.js 3.x + TSX 来开发
+基于 Vue.js 3.x + TSX 来开发：[main 分支](https://github.com/savoygu/music-player)
 
-- [client/vue3-tsx](./client/vue3-tsx)
-
-基于 React 18.x 版本来开发
-
-- [client/react](./client/react)
+基于 React 18.x 版本来开发：[react 分支](https://github.com/savoygu/music-player/tree/react)
 
 #### 服务端
 
@@ -84,9 +80,9 @@ npm run dev
 
 - [x] Monorepo（支持更多客户端/服务器共存）
 - [x] 加入 前端框架
-  - [x] Vue3
-  - [x] Vue3 + TSX
-  - [x] React
+  - [x] [Vue3](https://github.com/savoygu/music-player/tree/vue3)
+  - [x] [Vue3 + TSX](https://github.com/savoygu/music-player)
+  - [x] [React](https://github.com/savoygu/music-player/tree/react)
 - [ ] 加入 Node.js 框架
   - [x]  Midway.js
   - [ ]  NestJS
