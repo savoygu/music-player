@@ -18,6 +18,35 @@
   }
 }
 
+.music-singers {
+  @apply inline-flex flex-wrap text-sm h-[44px] overflow-hidden transition-all;
+
+  &.is-expand {
+    @apply h-auto;
+  }
+
+  .music-singer {
+    @apply px-3 py-2 bg-white mr-2 mb-2 cursor-pointer rounded-sm shadow-sm;
+
+    &.is-active {
+      @apply text-gray-50;
+
+      background-color: var(--theme-default);
+    }
+  }
+}
+
+.music-expand {
+  @apply absolute -right-8 top-1 cursor-pointer;
+
+  .i-icon {
+    path,
+    rect {
+      stroke: var(--theme-default);
+    }
+  }
+}
+
 .music-mode {
   @apply inline-flex cursor-pointer;
 

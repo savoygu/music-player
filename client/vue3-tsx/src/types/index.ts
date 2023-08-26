@@ -5,3 +5,8 @@ export interface MusicItem {
   cover: string
   duration?: number
 }
+
+export interface Singer {
+  artist: string;
+  count: number
+}
