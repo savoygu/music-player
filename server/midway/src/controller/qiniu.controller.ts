@@ -14,6 +14,7 @@ import { Validate } from '@midwayjs/validate';
 import * as dayjs from 'dayjs';
 import { MusicDTO } from '../dto/music';
 import { QiniuService } from '../service/qiniu.service';
+import { IMusic } from '../interface';
 
 @Controller('/api/qiniu')
 export class QiniuController {
@@ -41,7 +42,7 @@ export class QiniuController {
     @Body('music') music: MusicDTO
   ) {
     // 获取所有音乐
-    let musics = await this.qiniuService.getJSONFile(filename);
+    let musics = (await this.qiniuService.getJSONFile(filename)) as IMusic[];
     if (
       musics.find(
         item => item.title === music.title && item.artist === music.artist
